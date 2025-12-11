@@ -1,0 +1,313 @@
+/* ========== AI BUBBLE (Siri-like) ========== */
+
+@property --ai-a {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@property --ai-l {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+@property --ai-x {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ai-y {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0;
+}
+
+@property --ai-o {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
+
+@property --ai-ring-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0deg;
+}
+
+@property --ai-ring-width-ratio {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+@property --ai-ring-scale {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
+}
+
+/* Contenedor principal de la burbuja (el círculo) */
+.ai-bubble {
+  --ai-size: 104px;
+  --ai-padding: 20px;
+  --ai-bg-color: color-mix(in srgb, #f97316, transparent 90%);
+  width: var(--ai-size);
+  aspect-ratio: 1;
+  background:
+    radial-gradient(60% 75% at center, var(--ai-bg-color) 50%, transparent 50%),
+    radial-gradient(75% 60% at center, var(--ai-bg-color) 50%, transparent 50%);
+  padding: var(--ai-padding);
+  display: grid;
+  place-items: center;
+  position: relative;
+  border-radius: 999px;
+}
+
+/* Root del botón flotante */
+.ai-bubble-root {
+  display: inline-block;
+
+  /* reset de button */
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  line-height: 0;
+  width: auto;
+  height: auto;
+
+  /* props para las órbitas */
+  --ai-count: 4;
+  --ai-radius: 26px;
+}
+
+@keyframes ai-bubble-orbit {
+  from {
+    --ai-a: 360deg;
+    --ai-l: 0.35;
+    --ai-o: 1;
+  }
+  30% {
+    --ai-l: 1.5;
+  }
+  70% {
+    --ai-o: 0.4;
+    --ai-l: 0.05;
+  }
+  98% {
+    --ai-o: 0.7;
+  }
+  to {
+    --ai-a: 0deg;
+    --ai-l: 0.35;
+    --ai-o: 1;
+  }
+}
+
+.ai-bubble-c {
+  position: absolute;
+  width: 32px;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  opacity: var(--ai-o, 1);
+  --ai-offset-per-item: calc(360deg / var(--ai-count));
+  --ai-current-angle-offset: calc(var(--ai-offset-per-item) * var(--ai-i) + var(--ai-a));
+  translate: calc(
+      cos(var(--ai-current-angle-offset)) * var(--ai-radius) + var(--ai-x, 0)
+    )
+    calc(
+      sin(var(--ai-current-angle-offset)) * var(--ai-radius) * -1 +
+        var(--ai-y, 0)
+    );
+  scale: calc(0.6 + var(--ai-l));
+  animation: ai-bubble-orbit 5.5s cubic-bezier(0.45, -0.35, 0.16, 1.5) infinite;
+  transition: opacity 0.3s linear;
+}
+
+/* indices manuales */
+.ai-bubble-c:nth-child(1) { --ai-i: 0; }
+.ai-bubble-c:nth-child(2) { --ai-i: 1; }
+.ai-bubble-c:nth-child(3) { --ai-i: 2; }
+.ai-bubble-c:nth-child(4) { --ai-i: 3; }
+
+/* “Capas” internas */
+.ai-bubble-c1 {
+  background: radial-gradient(50% 50% at center, #fb923c 0%, #60a5fa 70%);
+  --ai-x: 6px;
+  width: 54px;
+  animation-timing-function: cubic-bezier(0.12, 0.32, 0.68, 0.24);
+}
+
+.ai-bubble-c2 {
+  background: radial-gradient(50% 50% at center, #93c5fd 0%, #f97316 85%);
+  width: 48px;
+}
+
+.ai-bubble-c3 {
+  background: radial-gradient(
+    50% 50% at center,
+    rgba(251, 146, 60, 0.8),
+    transparent 70%
+  );
+  width: 24px;
+  opacity: 0.55;
+  --ai-x: -6px;
+}
+
+.ai-bubble-c4 {
+  background: #2563eb;
+  animation-timing-function: cubic-bezier(0.39, -0.03, 0.75, 0.47);
+}
+
+/* Fondo circular + pulse */
+.ai-bubble-container {
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 65% 35%,
+      rgba(251, 146, 60, 0.35),
+      transparent 55%
+    ),
+    #0f172a;
+  width: 100%;
+  border-radius: 999px;
+  aspect-ratio: 1;
+  position: relative;
+  display: grid;
+  place-items: center;
+  box-shadow:
+    0 0 24px rgba(96, 165, 250, 0.35),
+    0 0 48px rgba(251, 146, 60, 0.25);
+}
+
+@keyframes ai-bubble-pulse {
+  0%   { transform: scale(1);    opacity: 0.75; }
+  70%  { transform: scale(1.35); opacity: 0; }
+  100% { transform: scale(1.35); opacity: 0; }
+}
+
+.ai-bubble-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    rgba(251, 146, 60, 0.45),
+    rgba(96, 165, 250, 0.25),
+    transparent 65%
+  );
+  animation: ai-bubble-pulse 4.5s ease-out infinite;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* cuando el chat está abierto detenemos el pulse */
+.ai-bubble-container.ai-active::before {
+  animation: none;
+}
+
+/* Capa glass externa */
+.ai-bubble-glass {
+  overflow: hidden;
+  position: absolute;
+  --ai-w: 2px;
+  inset: calc(var(--ai-padding) - var(--ai-w));
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  background: radial-gradient(
+    40px at 70% 30%,
+    rgba(255, 255, 255, 0.7),
+    transparent
+  );
+}
+
+.ai-bubble-glass::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  --ai-c: rgba(255, 255, 255, 0.03);
+  --ai-w2: 1px;
+  --ai-g: 3px;
+  background: repeating-linear-gradient(
+    var(--ai-c),
+    var(--ai-c),
+    var(--ai-w2),
+    transparent var(--ai-w2),
+    transparent calc(var(--ai-w2) + var(--ai-g))
+  );
+  border-radius: inherit;
+  border: 4px rgba(255, 255, 255, 0.1) solid;
+}
+
+/* Anillos exteriores */
+@keyframes ai-bubble-ring {
+  from {
+    --ai-ring-angle: var(--ai-ring-start);
+    --ai-ring-scale: 1;
+  }
+  50% {
+    --ai-ring-scale: 1.2;
+    --ai-ring-width-ratio: 1.5;
+  }
+  70% {
+    --ai-ring-scale: 1;
+    --ai-ring-angle: calc(var(--ai-ring-start) + 180deg);
+    --ai-ring-width-ratio: 1;
+  }
+  80% {
+    --ai-ring-scale: 1.2;
+    --ai-ring-width-ratio: 1.5;
+  }
+  to {
+    --ai-ring-angle: calc(var(--ai-ring-start) + 360deg);
+    --ai-ring-scale: 1;
+  }
+}
+
+.ai-bubble-rings {
+  aspect-ratio: 1;
+  border-radius: 999px;
+  position: absolute;
+  inset: 0;
+  perspective: 11rem;
+  opacity: 0.85;
+}
+
+.ai-bubble-rings::before,
+.ai-bubble-rings::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  --ai-ring-width-ratio: 1;
+  --ai-ring-width: 3px;
+  border: calc(var(--ai-ring-width) * var(--ai-ring-width-ratio)) solid transparent;
+  background:
+    linear-gradient(
+      white,
+      #22c1c3,
+      #f97316,
+      #fb923c,
+      #fde68a
+    )
+      border-box;
+  -webkit-mask: linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: xor;
+  animation: ai-bubble-ring 8s ease-in-out infinite;
+  --ai-ring-start: 180deg;
+  transform: rotateY(var(--ai-ring-angle)) rotateX(var(--ai-ring-angle))
+    rotateZ(var(--ai-ring-angle)) scale(var(--ai-ring-scale));
+}
+
+.ai-bubble-rings::after {
+  --ai-ring-start: 90deg;
+}
