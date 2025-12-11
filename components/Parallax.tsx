@@ -14,7 +14,7 @@ const Parallax: React.FC<ParallaxProps> = ({ children, speed = 0.1, className = 
     const handleScroll = () => {
       if (!ref.current) return;
       const rect = ref.current.getBoundingClientRect();
-      const scrollY = window.scrollY;
+      /*const scrollY = window.scrollY;*/
       const windowHeight = window.innerHeight;
       
       // Calculate only when in view or near view to optimize
