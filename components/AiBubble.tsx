@@ -1,5 +1,5 @@
 // src/components/AiBubble.tsx
-import React from 'react';
+import React, { memo } from 'react';
 
 interface AiBubbleProps {
   onClick?: () => void;
@@ -7,7 +7,7 @@ interface AiBubbleProps {
   isActive?: boolean;
 }
 
-const AiBubble: React.FC<AiBubbleProps> = ({
+const AiBubble: React.FC<AiBubbleProps> = memo(({
   onClick,
   className = '',
   isActive = false,
@@ -33,6 +33,8 @@ const AiBubble: React.FC<AiBubbleProps> = ({
       </div>
     </button>
   );
-};
+});
+
+AiBubble.displayName = 'AiBubble';
 
 export default AiBubble;

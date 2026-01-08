@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import { ArrowRight, Bot, ChevronRight, Play } from 'lucide-react';
 import FadeIn from './FadeIn';
 import TechBackground from './TechBackground';
@@ -6,7 +6,7 @@ import BrainCircuit from './BrainCircuit';
 import Parallax from './Parallax';
 import MagicCard from './MagicCard'; // 👈 importamos el borde mágico
 
-const Hero: React.FC = () => {
+const Hero: React.FC = memo(() => {
   return (
     <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen flex items-center bg-brand-dark z-20">
       <TechBackground variant="circuit" />
@@ -193,6 +193,8 @@ const Hero: React.FC = () => {
       </div>
     </div>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;

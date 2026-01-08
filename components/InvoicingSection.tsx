@@ -51,7 +51,7 @@ const InvoicingSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <FadeIn>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              El poder de la <span className="text-brand-primary">IA</span> en tu contabilidad
+              El poder de la <span className="text-brand-primary">IA</span> en la facturación
             </h2>
           </FadeIn>
           <FadeIn delay={100}>

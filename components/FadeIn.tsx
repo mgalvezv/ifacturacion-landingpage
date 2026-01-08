@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, memo } from 'react';
 
 interface FadeInProps {
   children: React.ReactNode;
@@ -7,7 +7,7 @@ interface FadeInProps {
   className?: string;
 }
 
-const FadeIn: React.FC<FadeInProps> = ({ 
+const FadeIn: React.FC<FadeInProps> = memo(({ 
   children, 
   delay = 0, 
   direction = 'up',
@@ -53,11 +53,16 @@ const FadeIn: React.FC<FadeInProps> = ({
       className={`transition-all duration-1000 ease-out ${className} ${
         isVisible ? 'opacity-100 translate-x-0 translate-y-0' : `opacity-0 ${getTransform()}`
       }`}
-      style={{ transitionDelay: `${delay}ms` }}
+      style={{ 
+        transitionDelay: `${delay}ms`,
+        willChange: isVisible ? 'auto' : 'opacity, transform'
+      }}
     >
       {children}
     </div>
   );
-};
+});
+
+FadeIn.displayName = 'FadeIn';
 
 export default FadeIn;

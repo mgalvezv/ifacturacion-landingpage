@@ -1,10 +1,10 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, memo } from 'react';
 
 interface BrainCircuitProps {
   className?: string;
 }
 
-const BrainCircuit: React.FC<BrainCircuitProps> = ({ className = '' }) => {
+const BrainCircuit: React.FC<BrainCircuitProps> = memo(({ className = '' }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
 useEffect(() => {
@@ -76,21 +76,19 @@ useEffect(() => {
     stroke: #f97316; /* Brand Primary Orange */
     stroke-width: 1;
     animation: goPath 4000ms alternate infinite;
-    will-change: stroke-dashoffset;
+    /* will-change solo cuando está visible - se maneja dinámicamente */
   }
   
   .brain-rect {
     stroke: #f97316;
     fill: #f97316;
     animation: goOpacity 4000ms alternate infinite;
-    will-change: opacity;
   }
   
   .brain-circle, .brain-ellipse {
     stroke: #f97316;
     fill: #f97316;
     animation: goOpacity 4000ms alternate infinite;
-    will-change: opacity;
   }
 
   @keyframes goPath {
@@ -438,6 +436,8 @@ useEffect(() => {
       </svg>
     </div>
   );
-};
+});
+
+BrainCircuit.displayName = 'BrainCircuit';
 
 export default BrainCircuit;

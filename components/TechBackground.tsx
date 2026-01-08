@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React, { useId, memo } from 'react';
 import TechCircles from './TechCircles';
 
 interface TechBackgroundProps {
@@ -9,7 +9,7 @@ interface TechBackgroundProps {
   animated?: boolean;
 }
 
-const TechBackground: React.FC<TechBackgroundProps> = ({
+const TechBackground: React.FC<TechBackgroundProps> = memo(({
   variant = 'grid',
   className = '',
   color,
@@ -202,6 +202,8 @@ const TechBackground: React.FC<TechBackgroundProps> = ({
       <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/95 via-transparent to-brand-dark/95" />
     </div>
   );
-};
+});
+
+TechBackground.displayName = 'TechBackground';
 
 export default TechBackground;

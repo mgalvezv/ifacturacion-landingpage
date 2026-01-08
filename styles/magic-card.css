@@ -43,6 +43,8 @@
 
   z-index: -1; /* 👈 detrás del contenido */
   animation: magic-spin 3s linear infinite;
+  transform: translateZ(0); /* GPU acceleration */
+  will-change: transform;
 }
 
 /* Glow externo */
@@ -59,6 +61,8 @@
   opacity: 0;
   z-index: -2; /* aún más atrás */
   animation: magic-spin 3s linear infinite;
+  transform: translateZ(0); /* GPU acceleration */
+  will-change: transform;
 }
 
 /* Hover */
@@ -78,6 +82,12 @@
   to {
     --rotate: 360deg;
   }
+}
+
+/* Optimización: solo activar will-change en hover/active */
+.magic-card:not(:hover):not(.magic-card--active)::before,
+.magic-card:not(:hover):not(.magic-card--active)::after {
+  will-change: auto;
 }
 
 /* Variante sutil para botones */

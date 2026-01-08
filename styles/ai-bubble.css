@@ -124,6 +124,8 @@
   scale: calc(0.6 + var(--ai-l));
   animation: ai-bubble-orbit 5.5s cubic-bezier(0.45, -0.35, 0.16, 1.5) infinite;
   transition: opacity 0.3s linear;
+  transform: translateZ(0); /* GPU acceleration */
+  will-change: transform, opacity;
 }
 
 /* indices manuales */
@@ -202,6 +204,8 @@
   animation: ai-bubble-pulse 4.5s ease-out infinite;
   z-index: -1;
   pointer-events: none;
+  transform: translateZ(0); /* GPU acceleration */
+  will-change: transform, opacity;
 }
 
 /* cuando el chat está abierto detenemos el pulse */
@@ -304,8 +308,9 @@
   -webkit-mask-composite: xor;
   animation: ai-bubble-ring 8s ease-in-out infinite;
   --ai-ring-start: 180deg;
-  transform: rotateY(var(--ai-ring-angle)) rotateX(var(--ai-ring-angle))
+  transform: translateZ(0) rotateY(var(--ai-ring-angle)) rotateX(var(--ai-ring-angle))
     rotateZ(var(--ai-ring-angle)) scale(var(--ai-ring-scale));
+  will-change: transform;
 }
 
 .ai-bubble-rings::after {

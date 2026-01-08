@@ -1,17 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-import InvoicingSection from './components/InvoicingSection';
-import StampingSection from './components/StampingSection';
-import ValidatorSection from './components/ValidatorSection';
-import PricingSection from './components/PricingSection';
-import SupportSection from './components/SupportSection';
-import TrustSection from './components/TrustSection';
-import ContactSection from './components/ContactSection';
-import Footer from './components/Footer';
 import TechBackground from './components/TechBackground';
 import AiChatWidget from './components/AiChatWidget';
 import AiBubble from './components/AiBubble';
+
+// Lazy load sections below the fold for better initial load performance
+const InvoicingSection = lazy(() => import('./components/InvoicingSection'));
+const StampingSection = lazy(() => import('./components/StampingSection'));
+const ValidatorSection = lazy(() => import('./components/ValidatorSection'));
+const PricingSection = lazy(() => import('./components/PricingSection'));
+const SupportSection = lazy(() => import('./components/SupportSection'));
+const TrustSection = lazy(() => import('./components/TrustSection'));
+const ContactSection = lazy(() => import('./components/ContactSection'));
+const Footer = lazy(() => import('./components/Footer'));
 
 const App: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
@@ -46,36 +48,40 @@ const App: React.FC = () => {
           <Hero />
         </section>
 
-        <section id="facturacion">
-          <InvoicingSection />
-        </section>
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <section id="facturacion">
+            <InvoicingSection />
+          </section>
 
-        <section id="timbrado">
-          <StampingSection />
-        </section>
+          <section id="timbrado">
+            <StampingSection />
+          </section>
 
-        <section id="valida">
-          <ValidatorSection />
-        </section>
+          <section id="valida">
+            <ValidatorSection />
+          </section>
 
-        <section id="planes">
-          <PricingSection />
-        </section>
+          <section id="planes">
+            <PricingSection />
+          </section>
 
-        <section id="confianza">
-          <TrustSection />
-        </section>
+          <section id="confianza">
+            <TrustSection />
+          </section>
 
-        <section id="soporte">
-          <SupportSection />
-        </section>
+          <section id="soporte">
+            <SupportSection />
+          </section>
 
-        <section id="contacto">
-          <ContactSection />
-        </section>
+          <section id="contacto">
+            <ContactSection />
+          </section>
+        </Suspense>
       </main>
 
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
 
       {/* Burbuja SOLO cuando el chat está cerrado */}
       {!isChatOpen && (

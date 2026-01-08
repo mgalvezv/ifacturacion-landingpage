@@ -1,32 +1,36 @@
 // src/components/TechCircles.tsx
-import React from 'react';
+import React, { memo } from 'react';
 
-const TechCircles: React.FC = () => {
+const TechCircles: React.FC = memo(() => {
   return (
     <div className="absolute inset-0 flex items-center justify-center overflow-hidden pointer-events-none">
       <style>{`
         .tech-circle-group {
           transform-origin: 450px 450px;
-          will-change: transform;
+          /* will-change solo cuando está visible */
         }
 
         /* Animaciones un poco más lentas para bajar carga */
         .spin-cw-slow {
           animation: spin 80s linear infinite;
+          transform: translateZ(0); /* GPU acceleration */
         }
         .spin-ccw-medium {
           animation: spin 65s linear infinite reverse;
+          transform: translateZ(0);
         }
         .spin-cw-fast {
           animation: spin 50s linear infinite;
+          transform: translateZ(0);
         }
         .spin-ccw-slow {
           animation: spin 100s linear infinite reverse;
+          transform: translateZ(0);
         }
 
         @keyframes spin {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
+          from { transform: translateZ(0) rotate(0deg); }
+          to { transform: translateZ(0) rotate(360deg); }
         }
 
         /* Respeto a usuarios con reduced motion */
@@ -104,6 +108,8 @@ const TechCircles: React.FC = () => {
       </svg>
     </div>
   );
-};
+});
+
+TechCircles.displayName = 'TechCircles';
 
 export default TechCircles;
