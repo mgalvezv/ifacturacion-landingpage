@@ -39,7 +39,9 @@ const StampingSection: React.FC = () => {
                 { title: "Alta Disponibilidad", desc: "99.99% garantizado por SLA." },
                 { title: "Facturación 1 a 1", desc: "Ideal para profesionistas y freelancers." },
                 { title: "Carga Masiva (Excel/XML)", desc: "Procesa miles de facturas o nóminas en minutos." },
-                { title: "Validación en tiempo real", desc: "Detecta errores antes de enviar al SAT." }
+                { title: "Validación en tiempo real", desc: "Detecta errores antes de enviar al SAT." },
+                { title: "Integración vía API", desc: "Conecta tu sistema directamente a nuestra plataforma usando APIs REST (JSON) para generar facturas de forma automática."}
+
               ].map((item, i) => (
                 <FadeIn key={i} delay={200 + (i * 50)}>
                   <MagicCard className="relative z-10">

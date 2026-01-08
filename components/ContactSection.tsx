@@ -29,7 +29,7 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs text-slate-500 uppercase">Email</div>
-                  <div className="font-medium">ventas@ifacturacion.mx</div>
+                  <div className="font-medium">contacto@redcibercom.com.mx</div>
                 </div>
               </div>
 
@@ -39,7 +39,7 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs text-slate-500 uppercase">Teléfono</div>
-                  <div className="font-medium">+52 (55) 1234 5678</div>
+                  <div className="font-medium">+52 55 5752 6963</div>
                 </div>
               </div>
 
@@ -49,7 +49,7 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <div className="text-xs text-slate-500 uppercase">Oficinas</div>
-                  <div className="font-medium">Reforma 222, CDMX</div>
+                  <div className="font-medium">La fragua @13, col Tabacalera</div>
                 </div>
               </div>
             </div>

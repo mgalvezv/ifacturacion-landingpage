@@ -34,7 +34,7 @@ const features = [
   {
     icon: <Layers className="w-6 h-6 text-brand-primary" />,
     title: "Todo en Uno",
-    description: "Facturas, Notas de Crédito, Complementos de Pago, Nómina y Carta Porte en una sola plataforma unificada."
+    description: "Facturas, Notas de Crédito, Complementos de Pago, Recibos de Nómina y Carta Porte en una sola plataforma unificada."
   }
 ];
 

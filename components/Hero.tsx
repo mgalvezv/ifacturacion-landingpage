@@ -47,7 +47,7 @@ const Hero: React.FC = memo(() => {
 
             <FadeIn delay={200}>
               <p className="text-lg text-slate-400 mb-10 max-w-lg leading-relaxed border-l-2 border-brand-primary/50 pl-6">
-                La plataforma multi-dispositivo más intuitiva de México. Genera facturas, nóminas y complementos simplemente <span className="text-brand-primary font-medium">hablando con nuestra IA</span>.
+                La plataforma multi-dispositivo más intuitiva y versátil de México. Genera facturas, recibos de nómina y complementos simplemente <span className="text-brand-primary font-medium">hablando con nuestra IA</span>.
               </p>
             </FadeIn>
 

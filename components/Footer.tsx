@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-slate-500 text-xs">
-            © {currentYear} IFacturación by Cibercom S.A. de C.V. Todos los derechos reservados.
+            © {currentYear} IFacturación by Cibernética en el siglo XXI S.A. de C.V. Todos los derechos reservados.
           </div>
           <div className="flex gap-6 text-xs">
             <a href="#" className="text-slate-500 hover:text-white transition-colors">Términos y condiciones</a>
