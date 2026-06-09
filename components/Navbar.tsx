@@ -63,7 +63,7 @@ const Navbar: React.FC = () => {
             </a>
           ))}
           <a
-            href="http://174.136.25.157:8080/"
+            href="https://cfid.redcibercom.cloud/"
             target="_blank"
             rel="noopener noreferrer"
             className="px-6 py-2.5 text-sm font-bold text-white bg-brand-primary hover:bg-brand-accent rounded-lg transition-all shadow-[0_0_15px_rgba(249,115,22,0.3)] hover:shadow-[0_0_20px_rgba(249,115,22,0.5)] transform hover:-translate-y-0.5"
@@ -121,7 +121,7 @@ const Navbar: React.FC = () => {
       ))}
 
       <a
-        href="http://174.136.25.157:8080/"
+        href="https://cfid.redcibercom.cloud/"
         target="_blank"
         rel="noopener noreferrer"
         className="w-full text-center px-8 py-4 text-lg font-bold text-white bg-brand-primary rounded-lg shadow-lg"
