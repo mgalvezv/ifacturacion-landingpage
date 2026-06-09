@@ -15,10 +15,10 @@ const Footer: React.FC = () => {
           <div className="col-span-2 lg:col-span-2 pr-8">
             <div className="flex items-center gap-2 mb-4">
                <Hexagon className="text-brand-primary w-6 h-6 fill-brand-primary/20" />
-              <span className="text-xl font-bold text-white">IFacturación</span>
+              <span className="text-xl font-bold text-white">CFID</span>
             </div>
             <p className="text-slate-500 mb-6 leading-relaxed">
-              La plataforma de facturación inteligente que evoluciona contigo. Simplificamos tus obligaciones fiscales con tecnología de vanguardia.
+              Cibercom Facturación Integral Digital. Simplificamos tus obligaciones fiscales con una plataforma CFDI 4.0 completa y accesible para todos.
             </p>
             <div className="flex gap-4">
               {[Youtube, Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
@@ -75,7 +75,7 @@ const Footer: React.FC = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="text-slate-500 text-xs">
-            © {currentYear} IFacturación by Cibernética en el siglo XXI S.A. de C.V. Todos los derechos reservados.
+            © {currentYear} CFID by Cibernética en el siglo XXI S.A. de C.V. Todos los derechos reservados.
           </div>
           <div className="flex gap-6 text-xs">
             <a href="#" className="text-slate-500 hover:text-white transition-colors">Términos y condiciones</a>

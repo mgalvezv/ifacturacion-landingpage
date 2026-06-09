@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 interface ParallaxProps {
   children: React.ReactNode;
@@ -8,10 +8,21 @@ interface ParallaxProps {
 
 const Parallax: React.FC<ParallaxProps> = ({ children, speed = 0.1, className = '' }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const [offset, setOffset] = useState(0);
   const rafId = useRef<number | null>(null);
+  const idleTimer = useRef<number | null>(null);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isSmallScreen = window.matchMedia('(max-width: 767px)').matches;
+
+    if (prefersReducedMotion || isSmallScreen || speed === 0) {
+      if (ref.current) {
+        ref.current.style.transform = 'translate3d(0, 0, 0)';
+        ref.current.style.willChange = 'auto';
+      }
+      return;
+    }
+
     let ticking = false;
 
     const updateOffset = () => {
@@ -26,7 +37,7 @@ const Parallax: React.FC<ParallaxProps> = ({ children, speed = 0.1, className = 
       // Calculate only when in view or near view to optimize
       if (rect.top < windowHeight * 1.5 && rect.bottom > -windowHeight * 0.5) {
         const distanceFromCenter = rect.top - windowHeight / 2;
-        setOffset(distanceFromCenter * speed);
+        ref.current.style.transform = `translate3d(0, ${distanceFromCenter * speed}px, 0)`;
       }
       
       ticking = false;
@@ -34,11 +45,23 @@ const Parallax: React.FC<ParallaxProps> = ({ children, speed = 0.1, className = 
 
     const handleScroll = () => {
       if (!ticking) {
+        if (ref.current) {
+          ref.current.style.willChange = 'transform';
+        }
         rafId.current = requestAnimationFrame(() => {
           updateOffset();
         });
         ticking = true;
       }
+
+      if (idleTimer.current !== null) {
+        window.clearTimeout(idleTimer.current);
+      }
+      idleTimer.current = window.setTimeout(() => {
+        if (ref.current) {
+          ref.current.style.willChange = 'auto';
+        }
+      }, 180);
     };
 
     // Initial calculation
@@ -53,6 +76,9 @@ const Parallax: React.FC<ParallaxProps> = ({ children, speed = 0.1, className = 
       if (rafId.current !== null) {
         cancelAnimationFrame(rafId.current);
       }
+      if (idleTimer.current !== null) {
+        window.clearTimeout(idleTimer.current);
+      }
     };
   }, [speed]);
 
@@ -60,10 +86,7 @@ const Parallax: React.FC<ParallaxProps> = ({ children, speed = 0.1, className = 
     <div 
       ref={ref} 
       className={className} 
-      style={{ 
-        transform: `translate3d(0, ${offset}px, 0)`,
-        willChange: 'transform'
-      }}
+      style={{ transform: 'translate3d(0, 0, 0)' }}
     >
       {children}
     </div>

@@ -42,9 +42,8 @@
   mask-composite: exclude;
 
   z-index: -1; /* 👈 detrás del contenido */
-  animation: magic-spin 3s linear infinite;
+  animation: magic-spin 3s linear infinite paused;
   transform: translateZ(0); /* GPU acceleration */
-  will-change: transform;
 }
 
 /* Glow externo */
@@ -60,22 +59,24 @@
   filter: blur(18px);
   opacity: 0;
   z-index: -2; /* aún más atrás */
-  animation: magic-spin 3s linear infinite;
+  animation: magic-spin 3s linear infinite paused;
   transform: translateZ(0); /* GPU acceleration */
-  will-change: transform;
 }
 
 /* Hover */
 .magic-card:hover::before,
 .magic-card:hover::after {
   opacity: 1;
+  animation-play-state: running;
+  will-change: transform;
 }
 
 /* Siempre activo (plan más popular) */
 .magic-card--active::before,
 .magic-card--active::after {
   opacity: 1;
-  animation: magic-spin 3s linear infinite;
+  animation-play-state: running;
+  will-change: transform;
 }
 
 @keyframes magic-spin {
@@ -97,4 +98,11 @@
 
 .magic-card.inline-block::before {
   padding: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .magic-card::before,
+  .magic-card::after {
+    animation: none !important;
+  }
 }

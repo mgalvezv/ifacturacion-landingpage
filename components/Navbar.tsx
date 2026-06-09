@@ -37,15 +37,15 @@ const Navbar: React.FC = () => {
           <div className="relative">
             <Hexagon className="text-brand-primary fill-brand-primary/20 w-8 h-8 group-hover:rotate-180 transition-transform duration-700" strokeWidth={1.5} />
             <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-[10px] font-bold text-brand-primary">iF</span>
+              <span className="text-[10px] font-bold text-brand-primary">CF</span>
             </div>
           </div>
           <div className="flex flex-col">
             <span className="text-xl font-bold tracking-tight text-white leading-none">
-              IFacturación
+              CFID
             </span>
             <span className="text-[10px] text-brand-primary tracking-[0.2em] font-medium leading-none mt-1">
-              INTELIGENTE
+              CIBERCOM
             </span>
           </div>
         </a>

@@ -4,12 +4,17 @@ import FadeIn from './FadeIn';
 import TechBackground from './TechBackground';
 import BrainCircuit from './BrainCircuit';
 import Parallax from './Parallax';
-import MagicCard from './MagicCard'; // 👈 importamos el borde mágico
+import MagicCard from './MagicCard'; 
+import { useMediaQuery } from './useMediaQuery';
+
 
 const Hero: React.FC = memo(() => {
+  const isDesktopVisual = useMediaQuery('(min-width: 1024px)');
+  const prefersReducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
+
   return (
     <div className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden min-h-screen flex items-center bg-brand-dark z-20">
-      <TechBackground variant="circuit" />
+      <TechBackground variant="circuit" animated={!prefersReducedMotion} />
       
       {/* Decorative Glows with Parallax */}
       <Parallax speed={-0.1} className="absolute top-1/4 right-0 -z-10">
@@ -30,7 +35,7 @@ const Hero: React.FC = memo(() => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-primary"></span>
                 </span>
-                Nueva tecnología SAT 4.0
+                CFDI 4.0 · Multi-dispositivo · API REST
               </div>
             </FadeIn>
             
@@ -39,7 +44,7 @@ const Hero: React.FC = memo(() => {
                 <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
                   Facturación <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-tech to-white">
-                    Impulsada por IA
+                    para todos
                   </span>
                 </h1>
               </Parallax>
@@ -47,7 +52,7 @@ const Hero: React.FC = memo(() => {
 
             <FadeIn delay={200}>
               <p className="text-lg text-slate-400 mb-10 max-w-lg leading-relaxed border-l-2 border-brand-primary/50 pl-6">
-                La plataforma multi-dispositivo más intuitiva y versátil de México. Genera facturas, recibos de nómina y complementos simplemente <span className="text-brand-primary font-medium">hablando con nuestra IA</span>.
+                Desde el profesionista independiente hasta la empresa con múltiples usuarios. Emite facturas, nómina, complementos de pago y carta porte, <span className="text-brand-primary font-medium">todo en un solo sistema</span>.
               </p>
             </FadeIn>
 
@@ -71,32 +76,36 @@ const Hero: React.FC = memo(() => {
             <FadeIn delay={400}>
               <div className="mt-12 flex items-center gap-6 pt-6 border-t border-slate-800">
                 <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-white">99.9%</span>
-                  <span className="text-xs text-slate-500 uppercase tracking-wide">Uptime</span>
+                  <span className="text-3xl font-bold text-white">7+</span>
+                  <span className="text-xs text-slate-500 uppercase tracking-wide">Tipos de CFDI</span>
                 </div>
                 <div className="w-px h-10 bg-slate-800"></div>
                 <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-white">+10k</span>
-                  <span className="text-xs text-slate-500 uppercase tracking-wide">Empresas</span>
+                  <span className="text-3xl font-bold text-white">100%</span>
+                  <span className="text-xs text-slate-500 uppercase tracking-wide">Web & Móvil</span>
                 </div>
                 <div className="w-px h-10 bg-slate-800"></div>
                 <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-white">24/7</span>
-                  <span className="text-xs text-slate-500 uppercase tracking-wide">Soporte IA</span>
+                  <span className="text-3xl font-bold text-white">API</span>
+                  <span className="text-xs text-slate-500 uppercase tracking-wide">REST incluida</span>
                 </div>
               </div>
             </FadeIn>
           </div>
 
           {/* Right Visuals - Futuristic Interface */}
-          <FadeIn direction="left" delay={200} className="relative hidden lg:block">
+          {isDesktopVisual && (
+          <FadeIn direction="left" delay={200} className="relative">
             <div className="relative w-full aspect-square max-w-lg mx-auto flex items-center justify-center">
               {/* Background geometric shapes */}
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/20 to-brand-tech/5 rounded-full blur-3xl animate-pulse-slow"></div>
               
               {/* Brain Circuit Animation - Behind the card */}
               <div className="absolute inset-0 z-0 scale-125 opacity-60">
-                <BrainCircuit />
+                <BrainCircuit
+                  animated={!prefersReducedMotion}
+                  maxAnimatedPaths={72}
+                />
               </div>
               
               {/* Main Interface Card con borde mágico */}
@@ -112,7 +121,7 @@ const Hero: React.FC = memo(() => {
                     </div>
                     <div className="text-[10px] font-mono text-brand-primary flex items-center gap-1">
                       <div className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse"></div>
-                      AI_AGENT_ACTIVE
+                      SISTEMA_OPERATIVO
                     </div>
                   </div>
 
@@ -122,7 +131,7 @@ const Hero: React.FC = memo(() => {
                     <div className="flex justify-end">
                       <div className="bg-brand-primary/20 border border-brand-primary/30 rounded-2xl rounded-tr-sm px-4 py-3 max-w-[80%] text-right">
                         <p className="text-sm text-white">
-                          Factura $25,000 a Constructora del Norte por "Materiales de Construcción".
+                          Factura $8,500 a Servicios Integrales del Norte por "Consultoría Mensual".
                         </p>
                       </div>
                     </div>
@@ -135,16 +144,16 @@ const Hero: React.FC = memo(() => {
                       <div className="space-y-2 max-w-[90%]">
                         <div className="bg-brand-surface border border-slate-600 rounded-2xl rounded-tl-sm px-4 py-3">
                           <p className="text-sm text-slate-300">
-                            Entendido. He preparado el pre-CFDI. Por favor confirma los datos:
+                            Pre-CFDI generado. Confirma los datos antes de timbrar:
                           </p>
                           <div className="mt-3 bg-brand-dark/50 rounded p-3 border border-slate-700 text-xs font-mono space-y-1">
                             <div className="flex justify-between">
                               <span className="text-slate-500">Receptor:</span>
-                              <span className="text-brand-tech">CONSTRUCTORA DEL NORTE SA</span>
+                              <span className="text-brand-tech">SERVICIOS INTEGRALES SA</span>
                             </div>
                             <div className="flex justify-between">
                               <span className="text-slate-500">Monto:</span>
-                              <span className="text-white">$25,000.00 MXN</span>
+                              <span className="text-white">$8,500.00 MXN</span>
                             </div>
                             <div className="flex justify-between">
                               <span className="text-slate-500">Uso CFDI:</span>
@@ -183,11 +192,12 @@ const Hero: React.FC = memo(() => {
                 className="absolute bottom-20 -left-8 bg-brand-surface border border-slate-600 p-3 rounded-lg shadow-xl opacity-80 backdrop-blur-sm animate-float z-20"
                 style={{ animationDelay: '2s' }}
               >
-                <div className="text-xs text-slate-400">Tiempo Respuesta</div>
-                <div className="text-sm font-bold text-brand-primary">0.45s</div>
+                <div className="text-xs text-slate-400">PAC Autorizado</div>
+                <div className="text-sm font-bold text-brand-primary">Finkok ✓</div>
               </div>
             </div>
           </FadeIn>
+          )}
 
         </div>
       </div>

@@ -30,18 +30,17 @@ const StampingSection: React.FC = () => {
             
             <FadeIn delay={100}>
               <p className="text-slate-400 text-lg mb-8">
-                Diseñado para manejar altos volúmenes de transacciones sin interrupciones. Nuestra conexión directa multi-PAC garantiza que tu operación nunca se detenga.
+                Diseñado para manejar el volumen de operación de cadenas retail sin interrupciones. Conexión directa con PAC autorizado y validación antes de cada envío al SAT.
               </p>
             </FadeIn>
 
             <div className="space-y-4">
               {[
-                { title: "Alta Disponibilidad", desc: "99.99% garantizado por SLA." },
-                { title: "Facturación 1 a 1", desc: "Ideal para profesionistas y freelancers." },
-                { title: "Carga Masiva (Excel/XML)", desc: "Procesa miles de facturas o nóminas en minutos." },
-                { title: "Validación en tiempo real", desc: "Detecta errores antes de enviar al SAT." },
-                { title: "Integración vía API", desc: "Conecta tu sistema directamente a nuestra plataforma usando APIs REST (JSON) para generar facturas de forma automática."}
-
+                { title: "Alta Disponibilidad", desc: "Monitor interno de logs y estado del servicio en tiempo real." },
+                { title: "Facturación 1 a 1", desc: "Captura libre o desde prefactura para operadores y profesionistas." },
+                { title: "Carga Masiva (Excel/XML)", desc: "Importa y procesa lotes de facturas o nóminas desde archivo." },
+                { title: "Validación en tiempo real", desc: "Detecta errores de RFC, complementos y estructura antes de enviar al PAC." },
+                { title: "Integración vía API REST", desc: "Colección Postman incluida. Conecta tu ERP, e-commerce o sistema propio de forma directa." }
               ].map((item, i) => (
                 <FadeIn key={i} delay={200 + (i * 50)}>
                   <MagicCard className="relative z-10">
@@ -104,12 +103,12 @@ const StampingSection: React.FC = () => {
 
                         <div className="grid grid-cols-2 gap-4">
                           <div className="bg-brand-surface/30 p-4 rounded-lg border border-slate-700/50">
-                            <div className="text-xs text-slate-500 mb-1">Timbrados hoy</div>
-                            <div className="text-2xl font-bold text-white">12,450</div>
+                            <div className="text-xs text-slate-500 mb-1">PAC Autorizado</div>
+                            <div className="text-xl font-bold text-white">Finkok ✓</div>
                           </div>
                           <div className="bg-brand-surface/30 p-4 rounded-lg border border-slate-700/50">
-                            <div className="text-xs text-slate-500 mb-1">Tiempo prom.</div>
-                            <div className="text-2xl font-bold text-brand-tech">120ms</div>
+                            <div className="text-xs text-slate-500 mb-1">Protocolo</div>
+                            <div className="text-xl font-bold text-brand-tech">TLS 1.3</div>
                           </div>
                         </div>
 

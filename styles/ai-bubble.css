@@ -316,3 +316,51 @@
 .ai-bubble-rings::after {
   --ai-ring-start: 90deg;
 }
+
+@media (max-width: 640px) {
+  .ai-bubble {
+    --ai-size: 76px;
+    --ai-padding: 15px;
+  }
+
+  .ai-bubble-root {
+    --ai-radius: 18px;
+  }
+
+  .ai-bubble-c {
+    width: 24px;
+    animation-duration: 7s;
+  }
+
+  .ai-bubble-c1 {
+    width: 38px;
+  }
+
+  .ai-bubble-c2 {
+    width: 34px;
+  }
+
+  .ai-bubble-c3 {
+    width: 18px;
+  }
+
+  .ai-bubble-container {
+    box-shadow:
+      0 0 16px rgba(96, 165, 250, 0.28),
+      0 0 28px rgba(251, 146, 60, 0.18);
+  }
+
+  .ai-bubble-glass {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ai-bubble-c,
+  .ai-bubble-container::before,
+  .ai-bubble-rings::before,
+  .ai-bubble-rings::after {
+    animation: none !important;
+  }
+}

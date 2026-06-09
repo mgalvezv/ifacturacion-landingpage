@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mic, MessageSquareText, ShieldCheck, Zap, Layers, Smartphone } from 'lucide-react';
+import { Store, Send, ShieldCheck, Users, Layers, Smartphone, Sparkles } from 'lucide-react';
 import FadeIn from './FadeIn';
 import Parallax from './Parallax';
 import MagicCard from './MagicCard'; 
@@ -7,34 +7,34 @@ import LinesBackground from './LinesBackground';
 
 const features = [
   {
-    icon: <Mic className="w-6 h-6 text-brand-primary" />,
-    title: "Voz a Factura",
-    description: "Simplemente dicta los detalles. Nuestra IA interpreta tu voz y genera la estructura XML del CFDI 4.0 automáticamente."
+    icon: <Store className="w-6 h-6 text-brand-primary" />,
+    title: "Prefactura y Captura",
+    description: "Genera borradores antes de timbrar, captura libre de conceptos o importa desde tus sistemas. Flexible para cualquier tipo de negocio."
   },
   {
-    icon: <MessageSquareText className="w-6 h-6 text-brand-tech" />,
-    title: "Chat Asistente",
-    description: "Un asistente virtual disponible 24/7. Pídele corregir conceptos, reenviar correos o cancelar facturas en lenguaje natural."
+    icon: <Send className="w-6 h-6 text-brand-tech" />,
+    title: "Envío Automático",
+    description: "El XML y PDF se envían al receptor por correo y WhatsApp automáticamente al timbrar. Sin pasos manuales."
   },
   {
     icon: <Smartphone className="w-6 h-6 text-purple-400" />,
-    title: "100% Móvil",
-    description: "Diseñado para funcionar perfectamente en tu celular. Emite recibos de honorarios o cartas porte desde cualquier lugar."
+    title: "100% Web y Móvil",
+    description: "Funciona desde cualquier navegador en PC, tablet o celular. Sin instalaciones, sin dependencias de equipo."
   },
   {
     icon: <ShieldCheck className="w-6 h-6 text-green-400" />,
     title: "Cumplimiento SAT",
-    description: "Actualizaciones automáticas a las últimas reformas fiscales. Nunca te preocupes por cambios en el Anexo 20."
+    description: "CFDI 4.0 con validación en tiempo real antes de enviar al PAC. Detecta errores de RFC, uso de CFDI y complementos."
   },
   {
-    icon: <Zap className="w-6 h-6 text-yellow-400" />,
-    title: "Automatización",
-    description: "Configura facturas recurrentes para tus clientes de iguala. El sistema las genera y envía sin que muevas un dedo."
+    icon: <Users className="w-6 h-6 text-yellow-400" />,
+    title: "Control por Roles",
+    description: "Operador, jefe de tienda, administrador y superusuario: cada perfil ve solo lo que necesita y tiene permisos diferenciados."
   },
   {
     icon: <Layers className="w-6 h-6 text-brand-primary" />,
     title: "Todo en Uno",
-    description: "Facturas, Notas de Crédito, Complementos de Pago, Recibos de Nómina y Carta Porte en una sola plataforma unificada."
+    description: "Facturas, Notas de Crédito, Complementos de Pago, Nómina, Carta Porte y Retenciones en una sola plataforma unificada."
   }
 ];
 
@@ -51,12 +51,12 @@ const InvoicingSection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-16">
           <FadeIn>
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
-              El poder de la <span className="text-brand-primary">IA</span> en la facturación
+              Todo lo que tu operación <span className="text-brand-primary">necesita</span>
             </h2>
           </FadeIn>
           <FadeIn delay={100}>
             <p className="text-slate-400 text-lg">
-              IFacturación no es solo un facturador, es un asistente inteligente que elimina la carga administrativa de tu negocio.
+              IFacturación no es solo un facturador, es la plataforma operativa que centraliza y automatiza el ciclo fiscal completo de tu negocio.
             </p>
           </FadeIn>
         </div>

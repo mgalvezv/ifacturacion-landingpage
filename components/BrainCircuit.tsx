@@ -2,9 +2,15 @@ import React, { useEffect, useRef, memo } from 'react';
 
 interface BrainCircuitProps {
   className?: string;
+  animated?: boolean;
+  maxAnimatedPaths?: number;
 }
 
-const BrainCircuit: React.FC<BrainCircuitProps> = memo(({ className = '' }) => {
+const BrainCircuit: React.FC<BrainCircuitProps> = memo(({
+  className = '',
+  animated = true,
+  maxAnimatedPaths = 72,
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
 useEffect(() => {
@@ -20,15 +26,17 @@ useEffect(() => {
     container.querySelectorAll<SVGPathElement>('.brain-path')
   );
 
-  // límite de paths animados para no matar la GPU
-  const MAX_ANIMATED_PATHS = 120;
+  const shouldAnimate =
+    animated && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // si hay más de X, animamos una muestra uniforme
   let animatedPaths: SVGPathElement[] = allPaths;
   let staticPaths: SVGPathElement[] = [];
 
-  if (allPaths.length > MAX_ANIMATED_PATHS) {
-    const step = Math.max(1, Math.floor(allPaths.length / MAX_ANIMATED_PATHS));
+  if (!shouldAnimate) {
+    animatedPaths = [];
+    staticPaths = allPaths;
+  } else if (allPaths.length > maxAnimatedPaths) {
+    const step = Math.max(1, Math.ceil(allPaths.length / maxAnimatedPaths));
 
     animatedPaths = allPaths.filter((_, idx) => idx % step === 0);
     staticPaths = allPaths.filter((_, idx) => idx % step !== 0);
@@ -60,13 +68,21 @@ useEffect(() => {
     '.brain-rect, .brain-circle, .brain-ellipse'
   );
   shapes.forEach((shape) => {
-    (shape as any).style.animationDelay = `${randNum(-20, 20) / 10}s`;
+    if (shouldAnimate) {
+      shape.style.animationDelay = `${randNum(-20, 20) / 10}s`;
+    } else {
+      shape.style.animation = 'none';
+      shape.style.opacity = '0.65';
+    }
   });
-}, []);
+}, [animated, maxAnimatedPaths]);
 
 
   return (
-    <div ref={containerRef} className={`relative w-full h-full ${className}`}>
+    <div
+      ref={containerRef}
+      className={`relative w-full h-full ${animated ? '' : 'brain-circuit--static'} ${className}`}
+    >
    <style>{`
   .brain-circuit-svg path {
     fill: transparent;

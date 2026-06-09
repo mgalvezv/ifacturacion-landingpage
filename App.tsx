@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import TechBackground from './components/TechBackground';
 import AiChatWidget from './components/AiChatWidget';
 import AiBubble from './components/AiBubble';
+import { useMediaQuery } from './components/useMediaQuery';
 
 // Lazy load sections below the fold for better initial load performance
 const InvoicingSection = lazy(() => import('./components/InvoicingSection'));
@@ -17,6 +18,7 @@ const Footer = lazy(() => import('./components/Footer'));
 
 const App: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
+  const isDesktopBackground = useMediaQuery('(min-width: 768px)');
 
   // Smooth scroll behavior for anchor links
   useEffect(() => {
@@ -28,18 +30,18 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-brand-dark text-slate-200 selection:bg-brand-primary selection:text-white relative font-sans">
-      {/* Fondo MUY ligero en mobile (sin animación) */}
-      <TechBackground
-        variant="dots"
-        animated={false}
-        className="fixed inset-0 z-0 pointer-events-none opacity-35 md:hidden"
-      />
-
-      {/* Fondo circles solo en md+ (el que se siente más pesado) */}
-      <TechBackground
-        variant="circles"
-        className="fixed inset-0 z-0 pointer-events-none opacity-60 hidden md:block"
-      />
+      {isDesktopBackground ? (
+        <TechBackground
+          variant="circles"
+          className="fixed inset-0 z-0 pointer-events-none opacity-60"
+        />
+      ) : (
+        <TechBackground
+          variant="dots"
+          animated={false}
+          className="fixed inset-0 z-0 pointer-events-none opacity-35"
+        />
+      )}
 
       <Navbar />
 

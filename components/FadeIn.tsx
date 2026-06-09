@@ -17,10 +17,16 @@ const FadeIn: React.FC<FadeInProps> = memo(({
   const domRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      setIsVisible(true);
+      return;
+    }
+
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 }); // Trigger when 10% visible
