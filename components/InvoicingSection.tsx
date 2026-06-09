@@ -1,5 +1,5 @@
 import React from 'react';
-import { Store, Send, ShieldCheck, Users, Layers, Smartphone, Sparkles } from 'lucide-react';
+import { Store, Send, ShieldCheck, Users, Layers, Smartphone } from 'lucide-react';
 import FadeIn from './FadeIn';
 import Parallax from './Parallax';
 import MagicCard from './MagicCard'; 
