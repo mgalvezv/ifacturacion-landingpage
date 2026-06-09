@@ -33,18 +33,18 @@ const TrustSection: React.FC = () => {
         <div className="grid md:grid-cols-3 gap-8">
           {[
             {
-              quote: "La función de voz a factura me ahorra horas cada semana. Simplemente dicto mientras conduzco y listo.",
-              author: "Carlos Méndez",
-              role: "Arquitecto Independiente"
+              quote: "Necesitaba facturar mis honorarios sin complicarme. Con CFID lo hice desde el celular en minutos, sin instalar nada.",
+              author: "Profesionista independiente",
+              role: "Arquitecto"
             },
             {
-              quote: "Migramos toda nuestra nómina a IFacturación. La integración con nuestro ERP fue impecable gracias a su API.",
-              author: "Ana López",
-              role: "Gerente de Finanzas, TechSolutions"
+              quote: "Migramos toda nuestra nómina a CFID. La integración con nuestro sistema interno fue directa gracias a la API REST.",
+              author: "Área de Finanzas",
+              role: "Empresa de servicios"
             },
             {
-              quote: "El soporte técnico realmente entiende del tema fiscal, no solo técnico. Me han salvado en varios cierres de mes.",
-              author: "Roberto Gil",
+              quote: "El equipo realmente entiende el tema fiscal, no solo el técnico. Nos han apoyado en varios cierres de mes.",
+              author: "Usuario administrativo",
               role: "Contador Público"
             }
           ].map((testimonial, i) => (

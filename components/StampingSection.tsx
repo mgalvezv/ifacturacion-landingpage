@@ -30,7 +30,7 @@ const StampingSection: React.FC = () => {
             
             <FadeIn delay={100}>
               <p className="text-slate-400 text-lg mb-8">
-                Diseñado para manejar el volumen de operación de cadenas retail sin interrupciones. Conexión directa con PAC autorizado y validación antes de cada envío al SAT.
+                Diseñado para manejar desde una factura individual hasta lotes completos sin interrupciones. Conexión directa con PAC autorizado y validación antes de cada envío al SAT.
               </p>
             </FadeIn>
 
