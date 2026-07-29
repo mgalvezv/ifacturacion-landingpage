@@ -35,16 +35,16 @@ const Hero: React.FC = memo(() => {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-primary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-primary"></span>
                 </span>
-                CFDI 4.0 · Multi-dispositivo · API REST
+                CFDI 4.0 · Servidor MCP · API REST
               </div>
             </FadeIn>
             
             <FadeIn delay={100}>
               <Parallax speed={0.05}>
                 <h1 className="text-5xl lg:text-7xl font-bold text-white leading-tight mb-6">
-                  Facturación <br />
+                  Timbrado CFDI <br />
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-tech to-white">
-                    para todos
+                    con IA integrada
                   </span>
                 </h1>
               </Parallax>
@@ -52,23 +52,29 @@ const Hero: React.FC = memo(() => {
 
             <FadeIn delay={200}>
               <p className="text-lg text-slate-400 mb-10 max-w-lg leading-relaxed border-l-2 border-brand-primary/50 pl-6">
-                Desde el profesionista independiente hasta la empresa con múltiples usuarios. Emite facturas, nómina, complementos de pago y carta porte, <span className="text-brand-primary font-medium">todo en un solo sistema</span>.
+                CFID de Cibercom centraliza facturación, nómina, complementos y carta porte. Conecta tu operación vía web, móvil, API REST o <span className="text-brand-primary font-medium">agentes de IA con servidor MCP</span> — y timbra en minutos, no en horas.
               </p>
             </FadeIn>
 
             <FadeIn delay={300}>
               <div className="flex flex-col sm:flex-row gap-4">
                 <MagicCard className="inline-block rounded-lg">
-                <button className="flex items-center justify-center gap-2 px-8 py-4 bg-brand-primary text-white font-bold rounded-lg hover:bg-brand-accent transition-all shadow-[0_0_20px_rgba(249,115,22,0.4)] hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] hover:-translate-y-1">
-                  Comenzar ahora
+                <a
+                  href="#contacto"
+                  className="flex items-center justify-center gap-2 px-8 py-4 bg-brand-primary text-white font-bold rounded-lg hover:bg-brand-accent transition-all shadow-[0_0_20px_rgba(249,115,22,0.4)] hover:shadow-[0_0_30px_rgba(249,115,22,0.6)] hover:-translate-y-1"
+                >
+                  Solicitar demo
                   <ArrowRight className="w-5 h-5" />
-                </button>
+                </a>
                 </MagicCard>
               <MagicCard className="inline-block rounded-lg">
-                <button className="flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-slate-600 text-white font-semibold rounded-lg hover:bg-brand-surface transition-all group relative z-10">
+                <a
+                  href="#ia-mcp"
+                  className="flex items-center justify-center gap-2 px-8 py-4 bg-transparent border border-slate-600 text-white font-semibold rounded-lg hover:bg-brand-surface transition-all group relative z-10"
+                >
                   <Play className="w-4 h-4 fill-current group-hover:text-brand-primary transition-colors" />
-                  Ver demostración
-                </button>
+                  Ver IA y MCP
+                </a>
               </MagicCard>
               </div>
             </FadeIn>
@@ -86,8 +92,8 @@ const Hero: React.FC = memo(() => {
                 </div>
                 <div className="w-px h-10 bg-slate-800"></div>
                 <div className="flex flex-col">
-                  <span className="text-3xl font-bold text-white">API</span>
-                  <span className="text-xs text-slate-500 uppercase tracking-wide">REST incluida</span>
+                  <span className="text-3xl font-bold text-white">MCP</span>
+                  <span className="text-xs text-slate-500 uppercase tracking-wide">Server incluido</span>
                 </div>
               </div>
             </FadeIn>

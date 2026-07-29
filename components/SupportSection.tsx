@@ -32,18 +32,21 @@ const SupportSection: React.FC = () => {
               title: 'Soporte Chat',
               desc: 'Habla con un experto en tiempo real. Tiempo de respuesta < 2 min.',
               cta: 'Iniciar chat',
+              href: '#contacto',
             },
             {
               icon: <HelpCircle className="w-8 h-8 text-brand-tech" />,
               title: 'Base de Conocimiento',
-              desc: 'Tutoriales detallados sobre facturación, nómina y complementos.',
+              desc: 'Guías de facturación, nómina, complementos y configuración MCP.',
               cta: 'Ver guías',
+              href: '#soporte',
             },
             {
               icon: <BookOpen className="w-8 h-8 text-purple-400" />,
-              title: 'Blog Fiscal',
-              desc: 'Mantente actualizado con las últimas noticias y cambios del SAT.',
-              cta: 'Leer novedades',
+              title: 'Asesoría Comercial',
+              desc: 'Cotiza folios, migración de PAC o integración con tu ERP.',
+              cta: 'Hablar con ventas',
+              href: '#contacto',
             },
           ].map((item, index) => (
             <FadeIn key={index} delay={index * 100} className="h-full">
@@ -54,9 +57,12 @@ const SupportSection: React.FC = () => {
                   </div>
                   <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
                   <p className="text-slate-400 mb-6 text-sm flex-grow">{item.desc}</p>
-                  <button className="text-brand-primary font-bold text-sm hover:text-white transition-colors flex items-center justify-center gap-2 group-hover:gap-3">
+                  <a
+                    href={item.href}
+                    className="text-brand-primary font-bold text-sm hover:text-white transition-colors flex items-center justify-center gap-2 group-hover:gap-3"
+                  >
                     {item.cta} &rarr;
-                  </button>
+                  </a>
                 </div>
               </MagicCard>
             </FadeIn>

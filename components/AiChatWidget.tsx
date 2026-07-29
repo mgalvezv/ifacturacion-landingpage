@@ -17,7 +17,7 @@ interface AiChatWidgetProps {
 const INITIAL_MESSAGE: Message = {
   id: 1,
   sender: 'agent',
-  text: '¡Hola! Soy el asistente de IFacturación. Puedo ayudarte a generar, revisar o explicar tus CFDI. ¿Por dónde empezamos?',
+  text: 'Modo demo sin orquestador. Configura VITE_CFID_AGENT_API_BASE en .env y levanta IACFID en :8088 para chat real.',
 };
 
 const AiChatWidget: React.FC<AiChatWidgetProps> = ({ onClose }) => {
@@ -62,7 +62,7 @@ const AiChatWidget: React.FC<AiChatWidgetProps> = ({ onClose }) => {
       const reply: Message = {
         id: nextId.current++,
         sender: 'agent',
-        text: 'He recibido tu mensaje. Estamos trabajando en la IA real 😉',
+        text: 'Modo demo sin orquestador. Levanta IACFID (:8088) y configura el .env de la landing.',
       };
       setMessages(prev => [...prev, reply]);
       setIsThinking(false);
@@ -100,7 +100,7 @@ const AiChatWidget: React.FC<AiChatWidgetProps> = ({ onClose }) => {
           <div className="flex items-center justify-between px-4 py-3 border-b border-white/10 bg-slate-900/70">
             <div>
               <div className="text-sm font-semibold text-brand-primary">
-                IFacturación AI
+                CFID AI
               </div>
               <div className="text-[11px] text-slate-400">
                 Asistente inteligente para CFDI 4.0

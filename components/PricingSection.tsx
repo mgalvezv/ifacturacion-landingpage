@@ -12,6 +12,7 @@ const plans = [
     features: [
       "50 Folios al mes",
       "Facturación por Voz",
+      "Servidor MCP (consulta)",
       "Almacenamiento 5 años",
       "App Móvil incluida",
       "Soporte por email"
@@ -26,6 +27,7 @@ const plans = [
     features: [
       "300 Folios al mes",
       "Facturación por Chat IA",
+      "Servidor MCP completo",
       "Timbrado de Nómina",
       "Complementos de Pago",
       "Soporte Prioritario",
@@ -42,6 +44,7 @@ const plans = [
       "1,500 Folios al mes",
       "Multi-usuario (hasta 5)",
       "API de integración",
+      "MCP + API Key dedicada",
       "Carga Masiva (Excel)",
       "Soporte WhatsApp VIP",
       "Personalización PDF"
@@ -74,7 +77,7 @@ const PricingSection: React.FC = () => {
             Planes Transparentes
           </h2>
           <p className="text-slate-400 text-lg">
-            Elige la herramienta adecuada para tu etapa de crecimiento. Sin plazos forzosos.
+            Precios claros, sin plazos forzosos. Escala cuando crezca tu volumen de folios.
           </p>
         </div>
       </FadeIn>
@@ -141,15 +144,16 @@ const PricingSection: React.FC = () => {
                     ))}
                   </ul>
 
-                  <button
-                    className={`w-full py-3 px-6 rounded-lg font-bold text-sm transition-all relative z-10 ${
+                  <a
+                    href="#contacto"
+                    className={`w-full py-3 px-6 rounded-lg font-bold text-sm transition-all relative z-10 inline-block text-center ${
                       plan.highlight
                         ? 'bg-brand-primary text-white hover:bg-brand-accent shadow-lg shadow-brand-primary/20'
                         : 'bg-slate-800 text-white border border-slate-600 hover:bg-slate-700 group-hover:border-slate-500'
                     }`}
                   >
-                    {plan.name === 'Personalizado' ? 'Contactar Ventas' : 'Elegir Plan'}
-                  </button>
+                    {plan.name === 'Personalizado' ? 'Contactar Ventas' : 'Solicitar plan'}
+                  </a>
                 </div>
               </MagicCard>
               {/* 👆 fin MagicCard */}

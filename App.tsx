@@ -2,12 +2,13 @@ import React, { useEffect, useState, Suspense, lazy } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import TechBackground from './components/TechBackground';
-import AiChatWidget from './components/AiChatWidget';
-import AiBubble from './components/AiBubble';
+import CfidAgentWidgetHost from './components/CfidAgentWidgetHost';
+import { CfidAgentProvider } from './context/CfidAgentProvider';
 import { useMediaQuery } from './components/useMediaQuery';
 
 // Lazy load sections below the fold for better initial load performance
 const InvoicingSection = lazy(() => import('./components/InvoicingSection'));
+const AiMcpSection = lazy(() => import('./components/AiMcpSection'));
 const StampingSection = lazy(() => import('./components/StampingSection'));
 const ValidatorSection = lazy(() => import('./components/ValidatorSection'));
 const PricingSection = lazy(() => import('./components/PricingSection'));
@@ -17,6 +18,14 @@ const ContactSection = lazy(() => import('./components/ContactSection'));
 const Footer = lazy(() => import('./components/Footer'));
 
 const App: React.FC = () => {
+  return (
+    <CfidAgentProvider>
+      <AppContent />
+    </CfidAgentProvider>
+  );
+};
+
+const AppContent: React.FC = () => {
   const [isChatOpen, setIsChatOpen] = useState(false);
   const isDesktopBackground = useMediaQuery('(min-width: 768px)');
 
@@ -55,6 +64,10 @@ const App: React.FC = () => {
             <InvoicingSection />
           </section>
 
+          <section>
+            <AiMcpSection />
+          </section>
+
           <section id="timbrado">
             <StampingSection />
           </section>
@@ -85,20 +98,11 @@ const App: React.FC = () => {
         <Footer />
       </Suspense>
 
-      {/* Burbuja SOLO cuando el chat está cerrado */}
-      {!isChatOpen && (
-        <AiBubble
-          onClick={() => setIsChatOpen(true)}
-          isActive={true}
-        />
-      )}
-
-      {/* Chat flotante en la misma esquina */}
-      {isChatOpen && (
-        <AiChatWidget
-          onClose={() => setIsChatOpen(false)}
-        />
-      )}
+      <CfidAgentWidgetHost
+        isOpen={isChatOpen}
+        onOpen={() => setIsChatOpen(true)}
+        onClose={() => setIsChatOpen(false)}
+      />
     </div>
   );
 };

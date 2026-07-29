@@ -56,7 +56,7 @@ const InvoicingSection: React.FC = () => {
           </FadeIn>
           <FadeIn delay={100}>
             <p className="text-slate-400 text-lg">
-              IFacturación no es solo un facturador, es la plataforma operativa que centraliza y automatiza el ciclo fiscal completo de tu negocio.
+              CFID no es solo un facturador: es la plataforma operativa que centraliza el ciclo fiscal completo — desde la captura hasta el envío al cliente, con cumplimiento SAT garantizado.
             </p>
           </FadeIn>
         </div>

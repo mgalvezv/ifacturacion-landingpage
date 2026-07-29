@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
               <span className="text-xl font-bold text-white">CFID</span>
             </div>
             <p className="text-slate-500 mb-6 leading-relaxed">
-              Cibercom Facturación Integral Digital. Simplificamos tus obligaciones fiscales con una plataforma CFDI 4.0 completa y accesible para todos.
+              Cibercom Facturación Integral Digital. Timbrado CFDI 4.0 con API REST, servidor MCP para agentes de IA y soporte experto en México.
             </p>
             <div className="flex gap-4">
               {[Youtube, Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
@@ -33,41 +33,41 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold mb-4 uppercase text-xs tracking-wider">Servicios</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Facturación</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Recibos de nómina</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Complementos</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Carta Porte</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Adendas</a></li>
+              <li><a href="#facturacion" className="text-slate-400 hover:text-brand-primary transition-colors">Facturación</a></li>
+              <li><a href="#timbrado" className="text-slate-400 hover:text-brand-primary transition-colors">Recibos de nómina</a></li>
+              <li><a href="#facturacion" className="text-slate-400 hover:text-brand-primary transition-colors">Complementos</a></li>
+              <li><a href="#facturacion" className="text-slate-400 hover:text-brand-primary transition-colors">Carta Porte</a></li>
+              <li><a href="#ia-mcp" className="text-slate-400 hover:text-brand-primary transition-colors">Servidor MCP</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-bold mb-4 uppercase text-xs tracking-wider">Planes</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Emprendedor</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Empresarial</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Corporativo</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Personalizado</a></li>
+              <li><a href="#planes" className="text-slate-400 hover:text-brand-primary transition-colors">Emprendedor</a></li>
+              <li><a href="#planes" className="text-slate-400 hover:text-brand-primary transition-colors">Empresarial</a></li>
+              <li><a href="#planes" className="text-slate-400 hover:text-brand-primary transition-colors">Corporativo</a></li>
+              <li><a href="#contacto" className="text-slate-400 hover:text-brand-primary transition-colors">Personalizado</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-bold mb-4 uppercase text-xs tracking-wider">Timbrado</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Facturas 1 a 1</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Factura Masiva</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">API Desarrolladores</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Validación XML</a></li>
+              <li><a href="#timbrado" className="text-slate-400 hover:text-brand-primary transition-colors">Facturas 1 a 1</a></li>
+              <li><a href="#timbrado" className="text-slate-400 hover:text-brand-primary transition-colors">Factura Masiva</a></li>
+              <li><a href="#ia-mcp" className="text-slate-400 hover:text-brand-primary transition-colors">API y MCP</a></li>
+              <li><a href="#valida" className="text-slate-400 hover:text-brand-primary transition-colors">Validación XML</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-bold mb-4 uppercase text-xs tracking-wider">Ayuda</h4>
             <ul className="space-y-2">
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Validador CFDI</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Soporte Técnico</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Preguntas Frecuentes</a></li>
-              <li><a href="#" className="text-slate-400 hover:text-brand-primary transition-colors">Estado del Servicio</a></li>
+              <li><a href="#valida" className="text-slate-400 hover:text-brand-primary transition-colors">Validador CFDI</a></li>
+              <li><a href="#contacto" className="text-slate-400 hover:text-brand-primary transition-colors">Soporte Técnico</a></li>
+              <li><a href="#soporte" className="text-slate-400 hover:text-brand-primary transition-colors">Centro de Ayuda</a></li>
+              <li><a href="mailto:contacto@redcibercom.com.mx" className="text-slate-400 hover:text-brand-primary transition-colors">contacto@redcibercom.com.mx</a></li>
             </ul>
           </div>
         </div>

@@ -17,15 +17,22 @@ const TrustSection: React.FC = () => {
         
         <FadeIn>
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-white mb-6">Confianza Empresarial</h2>
-            <div className="flex flex-wrap justify-center gap-8 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
-               {/* Placeholder Logos */}
-               {['Nexus', 'Vortex', 'Spherix', 'GlobalTech', 'Ampli'].map((name, i) => (
-                 <div key={i} className="text-xl font-bold text-slate-400 flex items-center gap-2">
-                    <div className="w-8 h-8 bg-slate-700 rounded-md"></div>
-                    {name}
-                 </div>
-               ))}
+            <h2 className="text-3xl font-bold text-white mb-6">Por qué confían en CFID</h2>
+            <div className="flex flex-wrap justify-center gap-6">
+              {[
+                { label: 'CFDI 4.0', sub: 'Cumplimiento SAT' },
+                { label: 'PAC Finkok', sub: 'Timbrado autorizado' },
+                { label: 'Cibercom', sub: '+15 años en software' },
+                { label: 'API + MCP', sub: 'Integración abierta' },
+              ].map((badge) => (
+                <div
+                  key={badge.label}
+                  className="px-5 py-3 rounded-xl bg-brand-surface border border-slate-700 text-center min-w-[140px]"
+                >
+                  <div className="text-sm font-bold text-white">{badge.label}</div>
+                  <div className="text-xs text-slate-500 mt-1">{badge.sub}</div>
+                </div>
+              ))}
             </div>
           </div>
         </FadeIn>

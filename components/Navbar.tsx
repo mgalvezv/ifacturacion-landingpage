@@ -15,10 +15,10 @@ const Navbar: React.FC = () => {
 
   const navLinks = [
     { name: 'Facturación', href: '#facturacion' },
+    { name: 'IA & MCP', href: '#ia-mcp' },
     { name: 'Timbrado', href: '#timbrado' },
     { name: 'Valida tu CFDI', href: '#valida' },
     { name: 'Planes', href: '#planes' },
-    { name: 'Soporte', href: '#soporte' },
     { name: 'Contacto', href: '#contacto' },
   ];
 
