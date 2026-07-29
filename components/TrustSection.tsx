@@ -7,13 +7,12 @@ import LinesBackground from './LinesBackground';
 
 const TrustSection: React.FC = () => {
   return (
-    <div className="py-24 border-y border-slate-800 relative">
-         {/* Background lines */}
+    <div className="py-24 border-y border-slate-800 relative overflow-hidden">
       <LinesBackground
         className="absolute inset-0 z-0 opacity-40"
         canvasOpacity={0.8}
       />
-      <div className="container mx-auto px-4 md:px-6">
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
         
         <FadeIn>
           <div className="text-center mb-16">

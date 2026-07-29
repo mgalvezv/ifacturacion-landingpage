@@ -35,7 +35,7 @@ const ContactSection: React.FC = () => {
   };
 
   return (
-    <div className="py-24 border-t border-slate-800 relative">
+    <div className="py-24 border-t border-slate-800 relative overflow-hidden">
       <LinesBackground
         className="absolute inset-0 z-0 opacity-40"
         canvasOpacity={0.8}

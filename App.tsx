@@ -41,7 +41,7 @@ const AppContent: React.FC = () => {
     <div className="min-h-screen bg-brand-dark text-slate-200 selection:bg-brand-primary selection:text-white relative font-sans">
       {isDesktopBackground ? (
         <TechBackground
-          variant="circles"
+          variant="grid"
           className="fixed inset-0 z-0 pointer-events-none opacity-60"
         />
       ) : (

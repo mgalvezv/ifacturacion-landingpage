@@ -7,7 +7,7 @@ import LinesBackground from './LinesBackground';
 
 const StampingSection: React.FC = () => {
   return (
-    <div className="py-24 relative overflow-hidden border-y border-slate-800">   {/* Background lines */}
+    <div className="py-24 relative overflow-hidden border-y border-slate-800">
       <LinesBackground
         className="absolute inset-0 z-0 opacity-40"
         canvasOpacity={0.8}

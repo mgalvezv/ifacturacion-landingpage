@@ -41,7 +41,6 @@ const features = [
 const InvoicingSection: React.FC = () => {
   return (
     <div className="py-24 relative overflow-hidden">
-        {/* Background lines */}
       <LinesBackground
         className="absolute inset-0 z-0 opacity-40"
         canvasOpacity={0.8}

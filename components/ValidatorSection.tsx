@@ -2,6 +2,7 @@ import React, { useState, useRef, ChangeEvent } from 'react';
 import { Search, ShieldCheck, FileCode, Upload, CheckSquare, Square, FileUp } from 'lucide-react';
 import FadeIn from './FadeIn';
 import MagicCard from './MagicCard';
+import TechCircles from './TechCircles';
 
 const ValidatorSection: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'manual' | 'xml'>('manual');
@@ -41,7 +42,10 @@ const ValidatorSection: React.FC = () => {
   };
 
   return (
-    <div className="py-24 relative">
+    <div className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
+        <TechCircles />
+      </div>
       <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
         
         <FadeIn>

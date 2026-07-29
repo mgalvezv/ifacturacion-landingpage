@@ -1,8 +1,7 @@
 import React, { useId, memo } from 'react';
-import TechCircles from './TechCircles';
 
 interface TechBackgroundProps {
-  variant?: 'grid' | 'dots' | 'circuit' | 'circles';
+  variant?: 'grid' | 'dots' | 'circuit';
   className?: string;
   color?: string; // Optional color override
   /** Permite apagar animaciones sutiles (por ej. en mobile o si hay lag) */
@@ -195,8 +194,6 @@ const TechBackground: React.FC<TechBackgroundProps> = memo(({
           )}
         </>
       )}
-
-      {variant === 'circles' && <TechCircles />}
 
       {/* Soft gradient overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-b from-brand-dark/95 via-transparent to-brand-dark/95" />

@@ -7,7 +7,6 @@ import LinesBackground from './LinesBackground';
 const SupportSection: React.FC = () => {
   return (
     <div className="py-20 relative overflow-hidden">
-         {/* Background lines */}
       <LinesBackground
         className="absolute inset-0 z-0 opacity-40"
         canvasOpacity={0.8}

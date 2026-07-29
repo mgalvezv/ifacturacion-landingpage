@@ -3,6 +3,7 @@ import { Check, Star } from 'lucide-react';
 import FadeIn from './FadeIn';
 import Parallax from './Parallax';
 import MagicCard from './MagicCard';
+import LinesBackground from './LinesBackground';
 const plans = [
   {
     name: "Emprendedor",
@@ -70,7 +71,12 @@ const plans = [
 
 const PricingSection: React.FC = () => {
   return (
-    <div className="py-24 container mx-auto px-4 md:px-6 relative overflow-hidden">
+    <div className="py-24 relative overflow-hidden">
+      <LinesBackground
+        className="absolute inset-0 z-0 opacity-40"
+        canvasOpacity={0.8}
+      />
+      <div className="container mx-auto px-4 md:px-6 relative z-10">
       <FadeIn>
         <div className="text-center mb-16 relative z-10">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
@@ -160,6 +166,7 @@ const PricingSection: React.FC = () => {
             </Parallax>
           </FadeIn>
         ))}
+      </div>
       </div>
     </div>
   );
