@@ -4,6 +4,7 @@ import Hero from './components/Hero';
 import TechBackground from './components/TechBackground';
 import CfidAgentWidgetHost from './components/CfidAgentWidgetHost';
 import { CfidAgentProvider } from './context/CfidAgentProvider';
+import { FeatureModalProvider } from './context/FeatureModalProvider';
 import { useMediaQuery } from './components/useMediaQuery';
 
 // Lazy load sections below the fold for better initial load performance
@@ -20,7 +21,9 @@ const Footer = lazy(() => import('./components/Footer'));
 const App: React.FC = () => {
   return (
     <CfidAgentProvider>
-      <AppContent />
+      <FeatureModalProvider>
+        <AppContent />
+      </FeatureModalProvider>
     </CfidAgentProvider>
   );
 };

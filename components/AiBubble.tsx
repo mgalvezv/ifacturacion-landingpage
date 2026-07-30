@@ -1,5 +1,6 @@
 // src/components/AiBubble.tsx
 import React, { memo } from 'react';
+import { HelpCircle } from 'lucide-react';
 
 interface AiBubbleProps {
   onClick?: () => void;
@@ -17,6 +18,8 @@ const AiBubble: React.FC<AiBubbleProps> = memo(({
       type="button"
       onClick={onClick}
       className={`ai-bubble-root fixed bottom-6 right-6 z-50 rounded-full focus:outline-none focus:ring-2 focus:ring-brand-primary/70 focus:ring-offset-2 focus:ring-offset-brand-dark transition-transform hover:scale-105 ${className}`}
+      aria-label="Ayuda de ventas y soporte"
+      title="Ayuda — ventas y soporte"
     >
       <div className="ai-bubble">
         {/* AQUÍ va el contenedor correcto */}
@@ -30,6 +33,10 @@ const AiBubble: React.FC<AiBubbleProps> = memo(({
         </div>
 
         <div className="ai-bubble-glass" />
+
+        <span className="ai-bubble-help-badge" aria-hidden="true">
+          <HelpCircle size={18} strokeWidth={2.5} />
+        </span>
       </div>
     </button>
   );

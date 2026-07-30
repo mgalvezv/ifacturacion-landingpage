@@ -1,10 +1,14 @@
 import React, { FormEvent, useState } from 'react';
 import FadeIn from './FadeIn';
-import { Send, Mail, MapPin, Phone } from 'lucide-react';
+import { Send, Mail, MapPin, Phone, Copy, Check, Info } from 'lucide-react';
 import MagicCard from './MagicCard';
 import LinesBackground from './LinesBackground';
-
-const CONTACT_EMAIL = 'contacto@redcibercom.com.mx';
+import {
+  CONTACT_EMAIL,
+  EMAIL_CLIENT_OPTIONS,
+  EmailClientId,
+  openEmailClient,
+} from '../lib/emailClient';
 
 const ContactSection: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -13,25 +17,45 @@ const ContactSection: React.FC = () => {
     email: '',
     mensaje: '',
   });
+  const [emailClient, setEmailClient] = useState<EmailClientId>('default');
+  const [copyFeedback, setCopyFeedback] = useState(false);
+
+  const buildMailPayload = () => ({
+    to: CONTACT_EMAIL,
+    subject: `Contacto CFID${formData.empresa ? ` - ${formData.empresa}` : ''}`,
+    body: [
+      `Nombre: ${formData.nombre}`,
+      `Empresa: ${formData.empresa || 'No especificada'}`,
+      `Email: ${formData.email}`,
+      '',
+      'Mensaje:',
+      formData.mensaje,
+    ].join('\n'),
+  });
+
+  const handleEmailAction = async (clientId: EmailClientId = emailClient) => {
+    const result = await openEmailClient(clientId, buildMailPayload());
+    if (result === 'copied') {
+      setCopyFeedback(true);
+      window.setTimeout(() => setCopyFeedback(false), 2500);
+    }
+  };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    void handleEmailAction(emailClient);
+  };
 
-    const subject = encodeURIComponent(
-      `Contacto CFID${formData.empresa ? ` - ${formData.empresa}` : ''}`
-    );
-    const body = encodeURIComponent(
-      [
-        `Nombre: ${formData.nombre}`,
-        `Empresa: ${formData.empresa || 'No especificada'}`,
-        `Email: ${formData.email}`,
-        '',
-        'Mensaje:',
-        formData.mensaje,
-      ].join('\n')
-    );
-
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+  const handleCopyEmail = async () => {
+    const result = await openEmailClient('copy', {
+      to: CONTACT_EMAIL,
+      subject: '',
+      body: '',
+    });
+    if (result === 'copied') {
+      setCopyFeedback(true);
+      window.setTimeout(() => setCopyFeedback(false), 2500);
+    }
   };
 
   return (
@@ -55,14 +79,38 @@ const ContactSection: React.FC = () => {
                 <div className="w-10 h-10 rounded bg-brand-surface flex items-center justify-center text-brand-primary shrink-0">
                   <Mail size={20} />
                 </div>
-                <div>
+                <div className="flex-1 min-w-0">
                   <div className="text-xs text-slate-500 uppercase">Email</div>
-                  <a
-                    href={`mailto:${CONTACT_EMAIL}`}
-                    className="font-medium hover:text-brand-primary transition-colors"
-                  >
-                    {CONTACT_EMAIL}
-                  </a>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        void handleEmailAction('default');
+                      }}
+                      className="font-medium hover:text-brand-primary transition-colors"
+                    >
+                      {CONTACT_EMAIL}
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => void handleCopyEmail()}
+                      className="inline-flex items-center gap-1 text-xs text-slate-500 hover:text-brand-primary transition-colors"
+                      title="Copiar correo"
+                    >
+                      {copyFeedback ? (
+                        <>
+                          <Check size={12} className="text-green-400" />
+                          <span className="text-green-400">Copiado</span>
+                        </>
+                      ) : (
+                        <>
+                          <Copy size={12} />
+                          Copiar
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -89,6 +137,16 @@ const ContactSection: React.FC = () => {
                   <div className="text-xs text-slate-500 uppercase">Oficinas</div>
                   <div className="font-medium">La fragua @13, col Tabacalera</div>
                 </div>
+              </div>
+
+              <div className="rounded-lg border border-slate-700/80 bg-brand-surface/40 p-4 flex gap-3">
+                <Info size={18} className="text-brand-tech shrink-0 mt-0.5" />
+                <p className="text-xs text-slate-500 leading-relaxed">
+                  Los navegadores no permiten elegir la app de correo instalada
+                  (p. ej. Spark). <strong className="text-slate-400">App predeterminada</strong>{' '}
+                  abre el cliente del sistema; usa Gmail u Outlook web si prefieres
+                  redactar en el navegador.
+                </p>
               </div>
             </div>
           </FadeIn>
@@ -188,6 +246,35 @@ const ContactSection: React.FC = () => {
                       placeholder="Cuéntanos cuántos folios timbras al mes, si necesitas MCP o integración API..."
                       className="w-full bg-brand-dark border border-slate-600 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:outline-none transition-colors"
                     />
+                  </div>
+
+                  <div className="mb-6">
+                    <label
+                      htmlFor="contact-email-client"
+                      className="block text-xs font-bold text-slate-400 mb-2 uppercase"
+                    >
+                      Enviar con
+                    </label>
+                    <select
+                      id="contact-email-client"
+                      value={emailClient}
+                      onChange={(e) =>
+                        setEmailClient(e.target.value as EmailClientId)
+                      }
+                      className="w-full bg-brand-dark border border-slate-600 rounded-lg px-4 py-3 text-white focus:border-brand-primary focus:outline-none transition-colors text-sm"
+                    >
+                      {EMAIL_CLIENT_OPTIONS.map((opt) => (
+                        <option key={opt.id} value={opt.id}>
+                          {opt.label}
+                        </option>
+                      ))}
+                    </select>
+                    <p className="text-xs text-slate-500 mt-2">
+                      {
+                        EMAIL_CLIENT_OPTIONS.find((o) => o.id === emailClient)
+                          ?.description
+                      }
+                    </p>
                   </div>
 
                   <button

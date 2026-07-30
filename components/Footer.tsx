@@ -1,8 +1,22 @@
 import React from 'react';
 import { Hexagon, Youtube, Facebook, Twitter, Instagram, Linkedin} from 'lucide-react';
+import { FOOTER_FEATURE_LINKS } from '../lib/features';
+import { useFeatureModal } from '../context/FeatureModalProvider';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
+  const { openFeature } = useFeatureModal();
+
+  const handleFeatureLink = (
+    event: React.MouseEvent<HTMLAnchorElement>,
+    linkKey: string
+  ) => {
+    const featureId = FOOTER_FEATURE_LINKS[linkKey];
+    if (featureId) {
+      event.preventDefault();
+      openFeature(featureId);
+    }
+  };
 
   return (
     <footer className="bg-brand-dark/90 backdrop-blur-xl border-t border-slate-800 pt-16 pb-8 text-sm relative overflow-hidden">
@@ -33,10 +47,34 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-bold mb-4 uppercase text-xs tracking-wider">Servicios</h4>
             <ul className="space-y-2">
-              <li><a href="#facturacion" className="text-slate-400 hover:text-brand-primary transition-colors">Facturación</a></li>
+              <li>
+                <a
+                  href="#facturacion"
+                  onClick={(e) => handleFeatureLink(e, 'facturacion')}
+                  className="text-slate-400 hover:text-brand-primary transition-colors"
+                >
+                  Facturación
+                </a>
+              </li>
               <li><a href="#timbrado" className="text-slate-400 hover:text-brand-primary transition-colors">Recibos de nómina</a></li>
-              <li><a href="#facturacion" className="text-slate-400 hover:text-brand-primary transition-colors">Complementos</a></li>
-              <li><a href="#facturacion" className="text-slate-400 hover:text-brand-primary transition-colors">Carta Porte</a></li>
+              <li>
+                <a
+                  href="#facturacion"
+                  onClick={(e) => handleFeatureLink(e, 'complementos')}
+                  className="text-slate-400 hover:text-brand-primary transition-colors"
+                >
+                  Complementos
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#facturacion"
+                  onClick={(e) => handleFeatureLink(e, 'carta-porte')}
+                  className="text-slate-400 hover:text-brand-primary transition-colors"
+                >
+                  Carta Porte
+                </a>
+              </li>
               <li><a href="#ia-mcp" className="text-slate-400 hover:text-brand-primary transition-colors">Servidor MCP</a></li>
             </ul>
           </div>

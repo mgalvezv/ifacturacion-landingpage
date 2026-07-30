@@ -1,44 +1,14 @@
 import React from 'react';
-import { Store, Send, ShieldCheck, Users, Layers, Smartphone } from 'lucide-react';
 import FadeIn from './FadeIn';
 import Parallax from './Parallax';
-import MagicCard from './MagicCard'; 
+import MagicCard from './MagicCard';
 import LinesBackground from './LinesBackground';
-
-const features = [
-  {
-    icon: <Store className="w-6 h-6 text-brand-primary" />,
-    title: "Prefactura y Captura",
-    description: "Genera borradores antes de timbrar, captura libre de conceptos o importa desde tus sistemas. Flexible para cualquier tipo de negocio."
-  },
-  {
-    icon: <Send className="w-6 h-6 text-brand-tech" />,
-    title: "Envío Automático",
-    description: "El XML y PDF se envían al receptor por correo y WhatsApp automáticamente al timbrar. Sin pasos manuales."
-  },
-  {
-    icon: <Smartphone className="w-6 h-6 text-purple-400" />,
-    title: "100% Web y Móvil",
-    description: "Funciona desde cualquier navegador en PC, tablet o celular. Sin instalaciones, sin dependencias de equipo."
-  },
-  {
-    icon: <ShieldCheck className="w-6 h-6 text-green-400" />,
-    title: "Cumplimiento SAT",
-    description: "CFDI 4.0 con validación en tiempo real antes de enviar al PAC. Detecta errores de RFC, uso de CFDI y complementos."
-  },
-  {
-    icon: <Users className="w-6 h-6 text-yellow-400" />,
-    title: "Control por Roles",
-    description: "Operador, jefe de tienda, administrador y superusuario: cada perfil ve solo lo que necesita y tiene permisos diferenciados."
-  },
-  {
-    icon: <Layers className="w-6 h-6 text-brand-primary" />,
-    title: "Todo en Uno",
-    description: "Facturas, Notas de Crédito, Complementos de Pago, Nómina, Carta Porte y Retenciones en una sola plataforma unificada."
-  }
-];
+import { FEATURES } from '../lib/features';
+import { useFeatureModal } from '../context/FeatureModalProvider';
 
 const InvoicingSection: React.FC = () => {
+  const { openFeature } = useFeatureModal();
+
   return (
     <div className="py-24 relative overflow-hidden">
       <LinesBackground
@@ -61,11 +31,16 @@ const InvoicingSection: React.FC = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
-            <FadeIn key={index} delay={index * 100} className="h-full">
+          {FEATURES.map((feature, index) => (
+            <FadeIn key={feature.id} delay={index * 100} className="h-full">
               <Parallax speed={index % 2 === 0 ? 0.05 : -0.02} className="h-full">
                 <MagicCard className="h-full">
-                  <div className="h-full p-8 bg-brand-surface border border-slate-700/60 rounded-xl transition-all duration-300 group relative overflow-hidden shadow-lg">
+                  <button
+                    type="button"
+                    onClick={() => openFeature(feature.id)}
+                    className="h-full w-full text-left p-8 bg-brand-surface border border-slate-700/60 rounded-xl transition-all duration-300 group relative overflow-hidden shadow-lg hover:border-brand-primary/40 cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-primary/50"
+                    aria-label={`Ver detalle de ${feature.title}`}
+                  >
                     <div className="w-12 h-12 bg-brand-blue rounded-lg flex items-center justify-center mb-6 border border-slate-700 group-hover:scale-110 transition-transform shadow-lg relative z-10">
                       {feature.icon}
                     </div>
@@ -75,7 +50,10 @@ const InvoicingSection: React.FC = () => {
                     <p className="text-slate-400 leading-relaxed relative z-10 text-sm">
                       {feature.description}
                     </p>
-                  </div>
+                    <span className="inline-block mt-4 text-xs font-semibold text-brand-primary opacity-0 group-hover:opacity-100 transition-opacity relative z-10">
+                      Ver detalle →
+                    </span>
+                  </button>
                 </MagicCard>
               </Parallax>
             </FadeIn>

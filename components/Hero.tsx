@@ -114,9 +114,12 @@ const Hero: React.FC = memo(() => {
                 />
               </div>
               
-              {/* Main Interface Card con borde mágico */}
-              <MagicCard className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md animate-float z-10">
-                <div className="bg-brand-blue/90 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl overflow-hidden">
+              {/* Main Interface Card — vista demostrativa (no interactiva) */}
+              <MagicCard className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md animate-float z-10 pointer-events-none select-none">
+                <div
+                  className="bg-brand-blue/90 backdrop-blur-xl border border-slate-700 rounded-2xl shadow-2xl overflow-hidden"
+                  aria-hidden="true"
+                >
                   
                   {/* Header */}
                   <div className="bg-brand-surface/80 px-4 py-3 border-b border-slate-700 flex justify-between items-center">
@@ -125,10 +128,15 @@ const Hero: React.FC = memo(() => {
                       <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
                       <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
                     </div>
-                    <div className="text-[10px] font-mono text-brand-primary flex items-center gap-1">
-                      <div className="w-1.5 h-1.5 rounded-full bg-brand-primary animate-pulse"></div>
-                      SISTEMA_OPERATIVO
+                    <div className="text-[10px] font-mono text-slate-400 uppercase tracking-wide">
+                      Vista demostrativa
                     </div>
+                  </div>
+
+                  <div className="px-4 py-2 bg-brand-primary/10 border-b border-brand-primary/20 text-center">
+                    <p className="text-xs font-semibold text-brand-primary">
+                      Así se emite una factura con IA
+                    </p>
                   </div>
 
                   {/* Chat Interface */}
@@ -136,8 +144,9 @@ const Hero: React.FC = memo(() => {
                     {/* User Message */}
                     <div className="flex justify-end">
                       <div className="bg-brand-primary/20 border border-brand-primary/30 rounded-2xl rounded-tr-sm px-4 py-3 max-w-[80%] text-right">
+                        <p className="text-[10px] text-slate-500 uppercase mb-1">Ejemplo de instrucción</p>
                         <p className="text-sm text-white">
-                          Factura $8,500 a Servicios Integrales del Norte por "Consultoría Mensual".
+                          Factura $8,500 a Servicios Integrales del Norte por &quot;Consultoría Mensual&quot;.
                         </p>
                       </div>
                     </div>
@@ -167,9 +176,9 @@ const Hero: React.FC = memo(() => {
                             </div>
                           </div>
                         </div>
-                        <button className="flex items-center gap-2 text-xs font-bold text-brand-primary hover:text-brand-accent transition-colors">
+                        <span className="inline-flex items-center gap-2 text-xs font-bold text-slate-500">
                           Timbrar ahora <ChevronRight size={14} />
-                        </button>
+                        </span>
                       </div>
                     </div>
                   </div>

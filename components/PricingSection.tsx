@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Check, Star } from 'lucide-react';
 import FadeIn from './FadeIn';
 import Parallax from './Parallax';
 import MagicCard from './MagicCard';
 import LinesBackground from './LinesBackground';
-const plans = [
+import PlanCheckoutModal, { PlanSummary } from './PlanCheckoutModal';
+
+const plans: PlanSummary[] = [
   {
     name: "Emprendedor",
     price: "$299",
     period: "/mes",
-    description: "Perfecto para freelancers y profesionales independientes.",
+    description: "Perfecto para freelancers y profesionistas independientes.",
     features: [
       "50 Folios al mes",
       "Facturación por Voz",
@@ -18,7 +20,6 @@ const plans = [
       "App Móvil incluida",
       "Soporte por email"
     ],
-    highlight: false
   },
   {
     name: "Empresarial",
@@ -34,7 +35,6 @@ const plans = [
       "Soporte Prioritario",
       "Reportes de Ingresos"
     ],
-    highlight: true
   },
   {
     name: "Corporativo",
@@ -50,7 +50,6 @@ const plans = [
       "Soporte WhatsApp VIP",
       "Personalización PDF"
     ],
-    highlight: false
   },
   {
     name: "Personalizado",
@@ -64,12 +63,14 @@ const plans = [
       "SLA Garantizado",
       "Gerente de Cuenta"
     ],
-    highlight: false
   }
 ];
 
+const HIGHLIGHT_INDEX = 1;
 
 const PricingSection: React.FC = () => {
+  const [selectedPlan, setSelectedPlan] = useState<PlanSummary | null>(null);
+
   return (
     <div className="py-24 relative overflow-hidden">
       <LinesBackground
@@ -89,22 +90,23 @@ const PricingSection: React.FC = () => {
       </FadeIn>
 
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 relative z-10">
-        {plans.map((plan, index) => (
+        {plans.map((plan, index) => {
+          const highlight = index === HIGHLIGHT_INDEX;
+          return (
           <FadeIn key={index} delay={index * 100} className="h-full">
-            <Parallax speed={plan.highlight ? 0.08 : 0.02} className="h-full">
+            <Parallax speed={highlight ? 0.08 : 0.02} className="h-full">
 
-              {/* 👇 MagicCard envuelve todo el contenido del plan */}
-              <MagicCard active={plan.highlight} className="h-full">
+              <MagicCard active={highlight} className="h-full">
                 <div
                   className={`h-full relative p-8 rounded-2xl flex flex-col transition-all duration-300 group
                     ${
-                      plan.highlight
+                      highlight
                         ? 'bg-gradient-to-b from-brand-surface to-brand-blue'
                         : 'bg-brand-surface'
                     }
                   `}
                 >
-                  {plan.highlight && (
+                  {highlight && (
                     <div className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-brand-primary text-white font-bold text-xs py-1 px-4 rounded-full uppercase tracking-wide shadow-lg flex items-center gap-1 z-20">
                       <Star className="w-3 h-3 fill-current" />
                       Más Popular
@@ -113,7 +115,7 @@ const PricingSection: React.FC = () => {
 
                   <h3
                     className={`text-xl font-bold mb-2 ${
-                      plan.highlight ? 'text-brand-primary' : 'text-white'
+                      highlight ? 'text-brand-primary' : 'text-white'
                     }`}
                   >
                     {plan.name}
@@ -142,7 +144,7 @@ const PricingSection: React.FC = () => {
                       >
                         <Check
                           className={`w-4 h-4 shrink-0 mt-0.5 ${
-                            plan.highlight ? 'text-brand-primary' : 'text-slate-500'
+                            highlight ? 'text-brand-primary' : 'text-slate-500'
                           }`}
                         />
                         {feature}
@@ -150,24 +152,32 @@ const PricingSection: React.FC = () => {
                     ))}
                   </ul>
 
-                  <a
-                    href="#contacto"
-                    className={`w-full py-3 px-6 rounded-lg font-bold text-sm transition-all relative z-10 inline-block text-center ${
-                      plan.highlight
+                  <button
+                    type="button"
+                    onClick={() => setSelectedPlan(plan)}
+                    className={`w-full py-3 px-6 rounded-lg font-bold text-sm transition-all relative z-10 ${
+                      highlight
                         ? 'bg-brand-primary text-white hover:bg-brand-accent shadow-lg shadow-brand-primary/20'
                         : 'bg-slate-800 text-white border border-slate-600 hover:bg-slate-700 group-hover:border-slate-500'
                     }`}
                   >
                     {plan.name === 'Personalizado' ? 'Contactar Ventas' : 'Solicitar plan'}
-                  </a>
+                  </button>
                 </div>
               </MagicCard>
-              {/* 👆 fin MagicCard */}
             </Parallax>
           </FadeIn>
-        ))}
+        );
+        })}
       </div>
       </div>
+
+      {selectedPlan && (
+        <PlanCheckoutModal
+          plan={selectedPlan}
+          onClose={() => setSelectedPlan(null)}
+        />
+      )}
     </div>
   );
 };

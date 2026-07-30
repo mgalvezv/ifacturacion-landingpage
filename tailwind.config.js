@@ -29,6 +29,8 @@ export default {
         'gradient-shift': 'gradient-shift 8s ease infinite',
         'glow-pulse': 'glow-pulse 6s ease-in-out infinite',
         flow: 'flow 20s linear infinite',
+        'progress-loop': 'progress-loop 2.8s ease-in-out infinite',
+        'progress-label': 'progress-label 2.8s ease-in-out infinite',
       },
       keyframes: {
         float: {
@@ -50,6 +52,15 @@ export default {
         flow: {
           '0%': { backgroundPosition: '0 0' },
           '100%': { backgroundPosition: '50px 50px' },
+        },
+        'progress-loop': {
+          '0%': { transform: 'scaleX(0)', opacity: '0.6' },
+          '50%': { transform: 'scaleX(1)', opacity: '1' },
+          '100%': { transform: 'scaleX(0)', opacity: '0.6' },
+        },
+        'progress-label': {
+          '0%, 100%': { opacity: '0.5' },
+          '50%': { opacity: '1' },
         },
       },
       backgroundImage: {
