@@ -14,10 +14,10 @@ const plans: PlanSummary[] = [
     description: "Perfecto para freelancers y profesionistas independientes.",
     features: [
       "50 Folios al mes",
-      "Facturación por Voz",
-      "Servidor MCP (consulta)",
+      "Emisión web CFDI 4.0",
+      "API REST (consulta)",
       "Almacenamiento 5 años",
-      "App Móvil incluida",
+      "Acceso web responsive",
       "Soporte por email"
     ],
   },
@@ -28,12 +28,11 @@ const plans: PlanSummary[] = [
     description: "Potencia tu PYME con herramientas avanzadas.",
     features: [
       "300 Folios al mes",
-      "Facturación por Chat IA",
-      "Servidor MCP completo",
-      "Timbrado de Nómina",
-      "Complementos de Pago",
-      "Soporte Prioritario",
-      "Reportes de Ingresos"
+      "Nómina y complementos de pago",
+      "Carta porte y retenciones",
+      "Factura global",
+      "Soporte prioritario",
+      "Reportes de operación"
     ],
   },
   {
@@ -43,12 +42,11 @@ const plans: PlanSummary[] = [
     description: "Para empresas con alto volumen de operación.",
     features: [
       "1,500 Folios al mes",
-      "Multi-usuario (hasta 5)",
-      "API de integración",
-      "MCP + API Key dedicada",
-      "Carga Masiva (Excel)",
-      "Soporte WhatsApp VIP",
-      "Personalización PDF"
+      "Multi-usuario y roles",
+      "API Key de integración",
+      "Cancelación masiva y cola de timbre",
+      "Envío correo / WhatsApp",
+      "Plantillas PDF personalizables"
     ],
   },
   {

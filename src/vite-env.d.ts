@@ -7,6 +7,10 @@ interface ImportMetaEnv {
   readonly VITE_CFID_USE_AEGIS_LOGIN: string;
   readonly VITE_CFID_DEMO_IDENTIFIER: string;
   readonly VITE_CFID_DEMO_PASSWORD: string;
+  /** API CFID (…/api) para login desde Acceso Clientes */
+  readonly VITE_CFID_API_BASE: string;
+  /** Portal web CFID al que se redirige tras login exitoso */
+  readonly VITE_CFID_APP_URL: string;
 }
 
 interface ImportMeta {

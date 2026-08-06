@@ -12,7 +12,7 @@ interface CfidAgentChatPanelProps {
 }
 
 const LIVE_INITIAL_MESSAGE =
-  'Demo conectada al orquestador IACFID. Escribe "Quiero facturar" o usa el chat libre. Para timbrar: Confirmo timbrar.';
+  'Asistente de demostración disponible. Describe lo que deseas facturar o usa el chat libre. Para continuar con el flujo, escribe: Confirmo timbrar.';
 
 const CfidAgentChatPanel: React.FC<CfidAgentChatPanelProps> = ({
   embedded = true,
@@ -34,7 +34,7 @@ const CfidAgentChatPanel: React.FC<CfidAgentChatPanelProps> = ({
   const resolvedSubtitle =
     subtitle ??
     (isDemoMode
-      ? 'Vista previa · MCP + Groq en desarrollo'
+      ? 'Vista previa del asistente de IA. Funcionalidad en desarrollo.'
       : 'Demo en vivo · MCP + Groq');
 
   const liveChat = useCfidAgentChat({

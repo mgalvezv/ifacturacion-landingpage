@@ -25,15 +25,10 @@ import { useFeatureModal } from '../context/FeatureModalProvider';
 
 
 const integrations = [
-
-  'Cursor & Claude Desktop',
-
   'API REST + Postman',
-
-  'Agentes personalizados',
-
-  'Automatización n8n / Make',
-
+  'Claves de integración entre sistemas (M2M)',
+  'Compatibilidad con Cursor y Claude Desktop (vista previa)',
+  'Agentes vía API',
 ];
 
 
@@ -225,6 +220,11 @@ const AiMcpSection: React.FC = () => {
                         <h3 className="text-white font-bold text-sm mb-1 transition-colors duration-300 group-hover:text-brand-primary">
 
                           {feature.title}
+                          {feature.badge ? (
+                            <span className="ml-2 align-middle text-[10px] font-semibold uppercase tracking-wide text-brand-primary/90 border border-brand-primary/30 rounded px-1.5 py-0.5">
+                              {feature.badge}
+                            </span>
+                          ) : null}
 
                         </h3>
 
@@ -292,13 +292,11 @@ const AiMcpSection: React.FC = () => {
 
                 </a>
 
-                <a
+                <button
 
-                  href="https://cfid.redcibercom.cloud/"
+                  type="button"
 
-                  target="_blank"
-
-                  rel="noopener noreferrer"
+                  onClick={() => window.dispatchEvent(new Event('cfid:open-client-access'))}
 
                   className="group inline-flex items-center justify-center gap-2 px-8 py-4 border border-slate-600 text-white font-semibold rounded-lg hover:bg-brand-surface transition-all duration-300 hover:-translate-y-0.5 hover:border-slate-500"
 
@@ -308,7 +306,7 @@ const AiMcpSection: React.FC = () => {
 
                   <Zap className="w-4 h-4 text-brand-primary transition-transform duration-300 group-hover:scale-110" />
 
-                </a>
+                </button>
 
               </div>
 

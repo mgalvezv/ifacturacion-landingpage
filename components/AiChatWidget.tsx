@@ -17,7 +17,7 @@ interface AiChatWidgetProps {
 const INITIAL_MESSAGE: Message = {
   id: 1,
   sender: 'agent',
-  text: 'Modo demo sin orquestador. Configura VITE_CFID_AGENT_API_BASE en .env y levanta IACFID en :8088 para chat real.',
+  text: 'Asistente de demostración disponible. Para habilitar la conversación en vivo, contacta al equipo de Cibercom.',
 };
 
 const AiChatWidget: React.FC<AiChatWidgetProps> = ({ onClose }) => {
@@ -62,7 +62,7 @@ const AiChatWidget: React.FC<AiChatWidgetProps> = ({ onClose }) => {
       const reply: Message = {
         id: nextId.current++,
         sender: 'agent',
-        text: 'Modo demo sin orquestador. Levanta IACFID (:8088) y configura el .env de la landing.',
+        text: 'Asistente de demostración disponible. Para habilitar la conversación en vivo, contacta al equipo de Cibercom.',
       };
       setMessages(prev => [...prev, reply]);
       setIsThinking(false);
