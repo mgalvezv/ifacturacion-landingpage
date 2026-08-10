@@ -232,7 +232,7 @@ const ValidatorSection: React.FC = () => {
 
                 {/* Footer dentro del mismo contenedor */}
                 <div className="bg-brand-dark/50 px-6 py-3 border-t border-slate-700/50 flex items-center justify-between text-[10px] text-slate-500">
-                  <span>Servicio gratuito de IFacturación</span>
+                  <span>Servicio gratuito de CFID</span>
                   <span className="flex items-center gap-1.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
                     Listas Negras SAT Actualizadas

@@ -1,6 +1,6 @@
-# IFacturación - Landing Page
+# CFID - Landing Page
 
-Esta es una landing page moderna y futurista para una plataforma de facturación electrónica impulsada por IA (IFacturación), diseñada específicamente para el mercado mexicano.
+Esta es una landing page moderna y futurista para una plataforma de facturación electrónica impulsada por IA (CFID), diseñada específicamente para el mercado mexicano.
 
 El proyecto está construido utilizando **React**, **TypeScript**, **Vite** y estilizado con **Tailwind CSS**.
 
