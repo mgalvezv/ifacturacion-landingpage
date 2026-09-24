@@ -25,6 +25,7 @@ export interface CfidLoginResponse {
   twoFactorHabilitado?: boolean;
   invitarActivar2FA?: boolean;
   mustChangePassword?: boolean;
+  tenantKey?: string | null;
 }
 
 export interface CfidSsoPayload {
@@ -37,6 +38,7 @@ export interface CfidSsoPayload {
   mustChangePassword?: boolean;
   twoFactorHabilitado?: boolean;
   invitarActivar2FA?: boolean;
+  tenantKey?: string | null;
   ts: number;
 }
 
@@ -131,6 +133,7 @@ export function buildCfidSsoRedirectUrl(login: CfidLoginResponse): string {
     mustChangePassword: Boolean(login.mustChangePassword),
     twoFactorHabilitado: login.twoFactorHabilitado,
     invitarActivar2FA: login.invitarActivar2FA,
+    tenantKey: login.tenantKey ?? null,
     ts: Date.now(),
   };
   const encoded = toBase64Url(JSON.stringify(payload));
